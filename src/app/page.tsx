@@ -66,7 +66,7 @@ export default function CalendarHome() {
 
     // Register Service Worker for PWA
     if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-      navigator.serviceWorker.register('/sw.js').catch((err) => {
+      navigator.serviceWorker.register('/personal-calendar/sw.js', { scope: '/personal-calendar/' }).catch((err) => {
         console.log('SW registration error:', err);
       });
     }
