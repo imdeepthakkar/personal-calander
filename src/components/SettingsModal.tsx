@@ -18,7 +18,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onClose,
   onSaveSettings,
 }) => {
-  const [boardTitle, setBoardTitle] = useState(settings.boardTitle || 'HERACLES');
+  const [boardTitle, setBoardTitle] = useState(settings.boardTitle || 'PERSONAL CALENDAR');
   const [primaryTimezone, setPrimaryTimezone] = useState(settings.primaryTimezone);
   const [primaryLabel, setPrimaryLabel] = useState(settings.primaryLabel);
   const [secondaryTimezone, setSecondaryTimezone] = useState(settings.secondaryTimezone);
@@ -44,7 +44,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     e.preventDefault();
     onSaveSettings({
       ...settings,
-      boardTitle: boardTitle.trim() || 'HERACLES',
+      boardTitle: boardTitle.trim() || 'PERSONAL CALENDAR',
       primaryTimezone,
       primaryLabel: primaryLabel.trim() || 'IST',
       secondaryTimezone,

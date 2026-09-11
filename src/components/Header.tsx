@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="flex flex-col items-center justify-center pt-5 pb-3 px-4 w-full">
       {/* Title */}
       <h1 className="text-2xl font-bold tracking-widest text-zinc-800 uppercase mb-3 select-none">
-        {settings.boardTitle || 'HERACLES'}
+        {settings.boardTitle || 'PERSONAL CALENDAR'}
       </h1>
 
       {/* Metric Summary Gradient Badges */}

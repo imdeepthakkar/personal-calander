@@ -66,7 +66,7 @@ export default function CalendarHome() {
 
     // Register Service Worker for PWA
     if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-      navigator.serviceWorker.register('/personal-calendar/sw.js', { scope: '/personal-calendar/' }).catch((err) => {
+      navigator.serviceWorker.register('/sw.js').catch((err) => {
         console.log('SW registration error:', err);
       });
     }
@@ -282,7 +282,7 @@ export default function CalendarHome() {
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 border-3 border-[#5b1938] border-t-transparent rounded-full animate-spin" />
           <span className="text-xs font-semibold text-zinc-600 tracking-wider">
-            Loading Heracles Workspace...
+            Loading Personal Calendar...
           </span>
         </div>
       </div>

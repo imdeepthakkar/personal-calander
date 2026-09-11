@@ -7,7 +7,7 @@ export const DEFAULT_SETTINGS: UserSettings = {
   secondaryLabel: "CST",
   workingHoursStart: 9,
   workingHoursEnd: 18,
-  boardTitle: "HERACLES",
+  boardTitle: "PERSONAL CALENDAR",
   googleConnected: false,
   microsoftConnected: false,
   icalFeeds: [],

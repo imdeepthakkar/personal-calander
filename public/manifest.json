@@ -1,16 +1,16 @@
 {
-  "name": "Heracles Calendar",
-  "short_name": "Heracles",
-  "description": "Executive Multi-Timezone Workload Calendar & To-Do PWA",
-  "start_url": "/personal-calendar/",
-  "scope": "/personal-calendar/",
+  "name": "Personal Calendar",
+  "short_name": "Personal Cal",
+  "description": "Multi-Timezone Workload Calendar & To-Do PWA",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f5f5ee",
   "theme_color": "#5b1938",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/personal-calendar/icon.svg",
+      "src": "/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'heracles-calendar-v1';
+const CACHE_NAME = 'personal-calendar-v1';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',

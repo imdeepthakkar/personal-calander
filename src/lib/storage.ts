@@ -2,9 +2,9 @@ import { get, set } from 'idb-keyval';
 import { CalendarEvent, ToDoItem, UserSettings } from '@/types/calendar';
 import { DEFAULT_SETTINGS, generateSeptember2026Data } from './mockData';
 
-const SETTINGS_KEY = 'heracles_settings_v1';
-const EVENTS_KEY = 'heracles_events_v1';
-const TODOS_KEY = 'heracles_todos_v1';
+const SETTINGS_KEY = 'personal_cal_settings_v1';
+const EVENTS_KEY = 'personal_cal_events_v1';
+const TODOS_KEY = 'personal_cal_todos_v1';
 
 export async function loadUserSettings(): Promise<UserSettings> {
   try {

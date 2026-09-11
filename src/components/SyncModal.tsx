@@ -48,7 +48,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
 
     try {
       const res = await fetch(
-        `/personal-calendar/api/ical-proxy?url=${encodeURIComponent(feedUrl.trim())}&name=${encodeURIComponent(
+        `/api/ical-proxy?url=${encodeURIComponent(feedUrl.trim())}&name=${encodeURIComponent(
           feedName.trim() || 'Subscribed Calendar'
         )}&color=${encodeURIComponent(feedColor)}`
       );

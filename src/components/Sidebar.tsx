@@ -61,7 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div
           onClick={() => onViewChange('matrix')}
           className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#691864] to-[#261c6a] flex items-center justify-center text-white font-black text-sm shadow-md cursor-pointer hover:opacity-90 transition-transform active:scale-95"
-          title="Heracles Calendar"
+          title="Personal Calendar"
         >
           H
         </div>

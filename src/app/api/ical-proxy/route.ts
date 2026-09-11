@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
 
     const res = await fetch(targetUrl, {
       headers: {
-        'User-Agent': 'HeraclesCalendar/1.0',
+        'User-Agent': 'PersonalCalendar/1.0',
         Accept: 'text/calendar, text/plain, */*',
       },
       next: { revalidate: 300 }, // Cache on edge for 5 mins

@@ -2,11 +2,11 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HERACLES | Executive Multi-Timezone Calendar",
+  title: "Personal Calendar | Multi-Timezone Workload Planner",
   description: "High-density multi-timezone workload calendar and To-Do workspace",
-  manifest: "/personal-calendar/manifest.json",
+  manifest: "/manifest.json",
   icons: {
-    icon: "/personal-calendar/icon.svg",
+    icon: "/icon.svg",
   },
 };
 
@@ -25,10 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="manifest" href="/personal-calendar/manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Heracles" />
+        <meta name="apple-mobile-web-app-title" content="Personal Calendar" />
       </head>
       <body className="antialiased select-none bg-[#f5f5ee] text-slate-800 min-h-screen">
         {children}

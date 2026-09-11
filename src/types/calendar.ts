@@ -61,7 +61,7 @@ export interface UserSettings {
   secondaryLabel: string;  // e.g. "CST"
   workingHoursStart: number; // 9 (9 AM)
   workingHoursEnd: number;   // 18 (6 PM)
-  boardTitle: string;        // "HERACLES"
+  boardTitle: string;        // "PERSONAL CALENDAR"
   googleConnected: boolean;
   microsoftConnected: boolean;
   icalFeeds: ICalFeed[];
