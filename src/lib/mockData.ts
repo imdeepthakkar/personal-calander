@@ -15,37 +15,37 @@ export const DEFAULT_SETTINGS: UserSettings = {
 };
 
 // Daily target distribution matching the screenshot exactly for September 2026
-export const SEPTEMBER_2026_TARGETS: Record<number, { ist: number; cst: number }> = {
-  1: { ist: 4, cst: 0 },
-  2: { ist: 9, cst: 1 },
-  3: { ist: 6, cst: 6 },
-  4: { ist: 4, cst: 1 },
-  5: { ist: 0, cst: 0 },
-  6: { ist: 1, cst: 0 },
-  7: { ist: 9, cst: 2 },
-  8: { ist: 6, cst: 6 },
-  9: { ist: 11, cst: 6 },
-  10: { ist: 7, cst: 3 },
-  11: { ist: 6, cst: 5 },
-  12: { ist: 0, cst: 0 },
-  13: { ist: 0, cst: 2 },
-  14: { ist: 4, cst: 2 },
-  15: { ist: 8, cst: 2 },
-  16: { ist: 1, cst: 0 },
-  17: { ist: 2, cst: 0 },
-  18: { ist: 0, cst: 0 },
-  19: { ist: 0, cst: 0 },
-  20: { ist: 0, cst: 0 },
-  21: { ist: 1, cst: 0 },
-  22: { ist: 0, cst: 0 },
-  23: { ist: 0, cst: 0 },
-  24: { ist: 0, cst: 0 },
-  25: { ist: 0, cst: 0 },
-  26: { ist: 0, cst: 0 },
-  27: { ist: 0, cst: 0 },
-  28: { ist: 0, cst: 0 },
-  29: { ist: 0, cst: 0 },
-  30: { ist: 0, cst: 0 },
+export const SEPTEMBER_2026_TARGETS: Record<number, { tz1: number; tz2: number }> = {
+  1: { tz1: 4, tz2: 0 },
+  2: { tz1: 9, tz2: 1 },
+  3: { tz1: 6, tz2: 6 },
+  4: { tz1: 4, tz2: 1 },
+  5: { tz1: 0, tz2: 0 },
+  6: { tz1: 1, tz2: 0 },
+  7: { tz1: 9, tz2: 2 },
+  8: { tz1: 6, tz2: 6 },
+  9: { tz1: 11, tz2: 6 },
+  10: { tz1: 12, tz2: 6 },
+  11: { tz1: 5, tz2: 6 },
+  12: { tz1: 0, tz2: 0 },
+  13: { tz1: 0, tz2: 2 },
+  14: { tz1: 4, tz2: 2 },
+  15: { tz1: 8, tz2: 2 },
+  16: { tz1: 1, tz2: 0 },
+  17: { tz1: 2, tz2: 0 },
+  18: { tz1: 0, tz2: 0 },
+  19: { tz1: 0, tz2: 0 },
+  20: { tz1: 0, tz2: 0 },
+  21: { tz1: 1, tz2: 0 },
+  22: { tz1: 0, tz2: 0 },
+  23: { tz1: 0, tz2: 0 },
+  24: { tz1: 0, tz2: 0 },
+  25: { tz1: 0, tz2: 0 },
+  26: { tz1: 0, tz2: 0 },
+  27: { tz1: 0, tz2: 0 },
+  28: { tz1: 0, tz2: 0 },
+  29: { tz1: 0, tz2: 0 },
+  30: { tz1: 0, tz2: 0 },
 };
 
 const SAMPLE_MEETINGS = [
@@ -76,24 +76,24 @@ export function generateSeptember2026Data(): { events: CalendarEvent[]; todos: T
     const day = parseInt(dayStr, 10);
     const dateStr = `2026-09-${String(day).padStart(2, "0")}`;
 
-    // Generate IST items
-    for (let i = 0; i < counts.ist; i++) {
+    // Generate tz1 items
+    for (let i = 0; i < counts.tz1; i++) {
       const isTodo = i % 3 === 2; // 1 out of 3 is a todo
-      const hour = 10 + (i % 8); // 10:00 to 18:00 IST
+      const hour = 10 + (i % 8); 
       const minute = i % 2 === 0 ? "00" : "30";
 
       if (isTodo) {
         const todoTemplate = SAMPLE_TODOS[(day + i) % SAMPLE_TODOS.length];
         todos.push({
-          id: `todo-${dateStr}-ist-${i}`,
+          id: `todo-${dateStr}-tz1-${i}`,
           source: (i % 2 === 0 ? "google-tasks" : "microsoft-todo"),
           title: `${todoTemplate.title} (${day} Sep)`,
           dueDate: dateStr,
           dueTime: `${String(hour).padStart(2, "0")}:${minute}`,
           completed: day < 11, // Past days completed
           priority: todoTemplate.priority,
-          tags: [todoTemplate.tag, "IST"],
-          notes: "Scheduled via Heracles task automation.",
+          tags: [todoTemplate.tag, DEFAULT_SETTINGS.primaryLabel],
+          notes: "Scheduled via task automation.",
         });
       } else {
         const meetTemplate = SAMPLE_MEETINGS[(day + i) % SAMPLE_MEETINGS.length];
@@ -101,59 +101,59 @@ export function generateSeptember2026Data(): { events: CalendarEvent[]; todos: T
         const endIso = `${dateStr}T${String(hour + 1).padStart(2, "0")}:${minute}:00+05:30`;
 
         events.push({
-          id: `event-${dateStr}-ist-${i}`,
+          id: `event-${dateStr}-tz1-${i}`,
           source: meetTemplate.source,
           calendarName: meetTemplate.cal,
           calendarColor: meetTemplate.color,
           title: meetTemplate.title,
-          description: "High priority sync scheduled with cross-timezone stakeholders.",
+          description: "High priority sync scheduled with stakeholders.",
           startTime: startIso,
           endTime: endIso,
           allDay: false,
           location: "Virtual Meeting Room",
           meetingUrl: "https://meet.google.com/abc-heracles-def",
-          timezone: "Asia/Kolkata",
+          timezone: DEFAULT_SETTINGS.primaryTimezone,
         });
       }
     }
 
-    // Generate CST items
-    for (let j = 0; j < counts.cst; j++) {
-      const isTodo = j % 3 === 2;
-      const cstHour = 9 + (j % 6); // 9:00 to 15:00 CST
-      const minute = j % 2 === 0 ? "00" : "30";
+    // Generate tz2 items
+    for (let i = 0; i < counts.tz2; i++) {
+      const isTodo = i % 3 === 2; // 1 out of 3 is a todo
+      const hour = 8 + (i % 8); // morning CST
+      const minute = i % 2 === 0 ? "15" : "45";
 
       if (isTodo) {
-        const todoTemplate = SAMPLE_TODOS[(day + j + 3) % SAMPLE_TODOS.length];
+        const todoTemplate = SAMPLE_TODOS[(day + i + 2) % SAMPLE_TODOS.length];
         todos.push({
-          id: `todo-${dateStr}-cst-${j}`,
-          source: "microsoft-todo",
-          title: `${todoTemplate.title} [US Team]`,
+          id: `todo-${dateStr}-tz2-${i}`,
+          source: (i % 2 === 0 ? "google-tasks" : "microsoft-todo"),
+          title: `${todoTemplate.title} (${day} Sep)`,
           dueDate: dateStr,
-          dueTime: `${String(cstHour).padStart(2, "0")}:${minute}`,
+          dueTime: `${String(hour).padStart(2, "0")}:${minute}`,
           completed: day < 11,
           priority: todoTemplate.priority,
-          tags: [todoTemplate.tag, "CST"],
-          notes: "Coordinated with Chicago CST team.",
+          tags: [todoTemplate.tag, DEFAULT_SETTINGS.secondaryLabel],
+          notes: "Follow up required before EOD.",
         });
       } else {
-        const meetTemplate = SAMPLE_MEETINGS[(day + j + 2) % SAMPLE_MEETINGS.length];
-        const startIso = `${dateStr}T${String(cstHour).padStart(2, "0")}:${minute}:00-05:00`;
-        const endIso = `${dateStr}T${String(cstHour + 1).padStart(2, "0")}:${minute}:00-05:00`;
+        const meetTemplate = SAMPLE_MEETINGS[(day + i + 2) % SAMPLE_MEETINGS.length];
+        const startIso = `${dateStr}T${String(hour).padStart(2, "0")}:${minute}:00-05:00`;
+        const endIso = `${dateStr}T${String(hour + 1).padStart(2, "0")}:${minute}:00-05:00`;
 
         events.push({
-          id: `event-${dateStr}-cst-${j}`,
+          id: `event-${dateStr}-tz2-${i}`,
           source: meetTemplate.source,
           calendarName: meetTemplate.cal,
           calendarColor: meetTemplate.color,
           title: meetTemplate.title,
-          description: "US Central alignment and decision session.",
+          description: "Sync with regional team.",
           startTime: startIso,
           endTime: endIso,
           allDay: false,
-          location: "Teams Meeting Room",
+          location: "Virtual Meeting Room",
           meetingUrl: "https://teams.microsoft.com/l/meetup-join/heracles",
-          timezone: "America/Chicago",
+          timezone: DEFAULT_SETTINGS.secondaryTimezone,
         });
       }
     }

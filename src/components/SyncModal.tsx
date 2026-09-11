@@ -271,7 +271,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
             <div>
               <h5 className="font-bold text-zinc-800">Screenshot Demo Dataset (Sept 2026)</h5>
               <p className="text-[11px] text-zinc-600">
-                Restore the exact 115 total items, IST 79 / CST 36 breakdown matching your photo.
+                Restore the exact 115 total items matching your photo.
               </p>
             </div>
             <button

@@ -55,10 +55,10 @@ export interface ICalFeed {
 }
 
 export interface UserSettings {
-  primaryTimezone: string; // e.g. "Asia/Kolkata" (IST)
-  primaryLabel: string;    // e.g. "IST"
-  secondaryTimezone: string; // e.g. "America/Chicago" (CST)
-  secondaryLabel: string;  // e.g. "CST"
+  primaryTimezone: string; 
+  primaryLabel: string;    
+  secondaryTimezone: string; 
+  secondaryLabel: string;  
   workingHoursStart: number; // 9 (9 AM)
   workingHoursEnd: number;   // 18 (6 PM)
   boardTitle: string;        // "PERSONAL CALENDAR"

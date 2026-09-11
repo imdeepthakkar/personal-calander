@@ -122,12 +122,12 @@ export default function CalendarHome() {
 
       // Separate counts by timezones / tags
       const tz1Items = [
-        ...dayEvents.filter((e) => e.timezone === 'Asia/Kolkata' || !e.timezone),
-        ...dayTodos.filter((t) => !t.tags?.includes('CST')),
+        ...dayEvents.filter((e) => e.timezone === settings.primaryTimezone || !e.timezone),
+        ...dayTodos.filter((t) => !t.tags?.includes(settings.secondaryLabel)),
       ];
       const tz2Items = [
-        ...dayEvents.filter((e) => e.timezone === 'America/Chicago'),
-        ...dayTodos.filter((t) => t.tags?.includes('CST')),
+        ...dayEvents.filter((e) => e.timezone === settings.secondaryTimezone),
+        ...dayTodos.filter((t) => t.tags?.includes(settings.secondaryLabel)),
       ];
 
       const dayTotal = dayEvents.length + dayTodos.length;
