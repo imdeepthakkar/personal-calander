@@ -4,9 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Personal Calendar | Multi-Timezone Workload Planner",
   description: "High-density multi-timezone workload calendar and To-Do workspace",
-  manifest: "/manifest.json",
+  manifest: "/personal-calendar/manifest.json",
   icons: {
-    icon: "/icon.svg",
+    icon: "/personal-calendar/icon.svg",
   },
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/personal-calendar/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Personal Calendar" />
