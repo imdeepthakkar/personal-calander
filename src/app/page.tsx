@@ -339,7 +339,7 @@ export default function CalendarHome() {
 
         {/* View 2: Week Dual-Timeline View */}
         {currentView === 'week' && (
-          <div className="p-6 max-w-5xl mx-auto w-full relative z-10">
+          <div className="p-6 max-w-6xl mx-auto w-full relative z-10">
             <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-8">
               <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/50">
                 <div>
@@ -353,20 +353,12 @@ export default function CalendarHome() {
                     Daily commitments and scheduled events
                   </p>
                 </div>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => setIsNewTaskModalOpen(true)}
-                    className="px-6 py-3 rounded-2xl bg-gradient-to-br from-[#A78BFA] to-clay-accent shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 text-sm font-black text-white transition-all flex items-center gap-2 tracking-wide"
-                  >
-                    <Plus className="w-4 h-4" /> Add Task
-                  </button>
-                  <button
-                    onClick={() => setCurrentView('matrix')}
-                    className="px-6 py-3 rounded-2xl bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-sm font-black text-clay-foreground transition-all tracking-wide"
-                  >
-                    Matrix View
-                  </button>
-                </div>
+                <button
+                  onClick={() => setCurrentView('matrix')}
+                  className="px-4 py-2 rounded-2xl bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-sm font-bold text-clay-foreground transition-all"
+                >
+                  Back to Matrix View
+                </button>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
@@ -420,7 +412,7 @@ export default function CalendarHome() {
           </div>
         )}
 
-        {/* View 3: All Tasks & To-Do Board */}
+                {/* View 3: All Tasks & To-Do Board */}
         {currentView === 'todos' && (
           <div className="p-6 max-w-5xl mx-auto w-full relative z-10">
             <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-8">
