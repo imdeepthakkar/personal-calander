@@ -59,8 +59,17 @@ export const DayCell: React.FC<DayCellProps> = ({
         }
       `}
     >
+      {/* Top right: Event Count Badge */}
+      {isCurrentMonth && totalCount > 0 && (
+        <div className="absolute top-1.5 right-1.5">
+          <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 bg-[#2c2c2c] text-white text-[10px] font-bold rounded-full shadow-sm">
+            {totalCount}
+          </span>
+        </div>
+      )}
+
       {/* Center: Large Day Number */}
-      <div className="flex items-center justify-center my-auto">
+      <div className="flex-1 flex items-center justify-center">
         <span
           className={`text-2xl sm:text-3xl font-bold tracking-tight ${
             isCurrentMonth ? 'text-zinc-900' : 'text-zinc-400'
@@ -69,17 +78,6 @@ export const DayCell: React.FC<DayCellProps> = ({
           {dayNumber}
         </span>
       </div>
-
-      {/* Bottom row: Workload Metric */}
-      {isCurrentMonth && totalCount > 0 ? (
-        <div className="flex justify-center w-full">
-          <span className="px-2 py-0.5 bg-black/10 text-zinc-700 text-[10px] font-bold rounded">
-            {totalCount} item{totalCount !== 1 ? 's' : ''}
-          </span>
-        </div>
-      ) : (
-        <div className="h-4" />
-      )}
     </div>
   );
 };
