@@ -81,22 +81,8 @@ export const DayCell: React.FC<DayCellProps> = ({
         </span>
       </div>
 
-      {/* Bottom row: Dual Timezone Badge Chips */}
-      {isCurrentMonth ? (
-        <div className="flex items-center justify-between gap-1 w-full mt-1">
-          {/* Primary Timezone */}
-          <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] sm:text-[11px] font-semibold rounded bg-[#c5dfc2] text-[#22401e] shadow-2xs">
-            {settings.primaryLabel} {tz1Count}
-          </span>
-
-          {/* Secondary Timezone */}
-          <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] sm:text-[11px] font-semibold rounded bg-[#cbe1f2] text-[#1c3c5d] shadow-2xs">
-            {settings.secondaryLabel} {tz2Count}
-          </span>
-        </div>
-      ) : (
-        <div className="h-4" />
-      )}
+      {/* Optional padding to maintain card height if needed */}
+      <div className="h-4" />
     </div>
   );
 };

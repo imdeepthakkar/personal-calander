@@ -43,13 +43,6 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="inline-flex items-center justify-center px-6 py-1.5 rounded-full text-white font-bold text-sm shadow-md bg-gradient-to-r from-[#7a1236] via-[#941344] to-[#6d1033] tracking-wide cursor-default transition-transform hover:scale-105">
           <span>TOTAL: {totalCount}</span>
         </div>
-
-        {/* Dual Timezone Split Pill */}
-        <div className="inline-flex items-center justify-center px-6 py-1.5 rounded-full text-white font-bold text-sm shadow-md bg-gradient-to-r from-[#691864] via-[#431773] to-[#261c6a] tracking-wide cursor-default transition-transform hover:scale-105">
-          <span>
-            {settings.primaryLabel}: {tz1Count} &nbsp;|&nbsp; {settings.secondaryLabel}: {tz2Count}
-          </span>
-        </div>
       </div>
 
       {/* Month Subtitle & Quick Navigation */}
