@@ -23,8 +23,8 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
     <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 pb-6 select-none relative z-10">
       <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[32px] md:rounded-[48px] p-2 sm:p-4 md:p-6 transition-all duration-500 hover:shadow-[16px_16px_40px_rgba(160,150,180,0.3),-10px_-10px_30px_rgba(255,255,255,1),inset_6px_6px_12px_rgba(139,92,246,0.03),inset_-6px_-6px_12px_rgba(255,255,255,1)]">
         {/* Weekday Column Headers */}
-        <div className="grid grid-cols-8 gap-1 sm:gap-3 mb-2 text-center">
-          <div className="py-2 text-[9px] sm:text-[11px] font-black text-clay-muted/50 tracking-widest uppercase">
+        <div className="grid grid-cols-7 sm:grid-cols-8 gap-1 sm:gap-3 mb-2 text-center">
+          <div className="hidden sm:block py-2 text-[9px] sm:text-[11px] font-black text-clay-muted/50 tracking-widest uppercase">
             WK
           </div>
           {WEEKDAYS.map((day) => (
@@ -33,7 +33,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
               className="py-2 text-[9px] sm:text-[11px] font-black text-clay-muted tracking-widest uppercase"
               style={{ fontFamily: 'var(--font-nunito)' }}
             >
-              {day}
+              <span className="hidden sm:inline">{day}</span><span className="sm:inline-block sm:hidden">{day.charAt(0)}</span>
             </div>
           ))}
         </div>
@@ -55,8 +55,8 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
             }
 
             return (
-              <div key={`week-${weekIndex}`} className="grid grid-cols-8 gap-2 sm:gap-3">
-                <div className="flex items-center justify-center font-bold text-[10px] text-clay-muted bg-[#EFEBF5] shadow-clayPressed rounded-[20px] opacity-70">
+              <div key={`week-${weekIndex}`} className="grid grid-cols-7 sm:grid-cols-8 gap-2 sm:gap-3">
+                <div className="hidden sm:flex items-center justify-center font-bold text-[10px] text-clay-muted bg-[#EFEBF5] shadow-clayPressed rounded-[20px] opacity-70">
                   W{weekNum}
                 </div>
                 {weekDays.map((dayWorkload, index) => (

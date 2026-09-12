@@ -52,7 +52,7 @@ export const DayCell: React.FC<DayCellProps> = ({
         }
       }}
       className={`
-        relative flex flex-col justify-between p-2.5 min-h-[72px] sm:min-h-[84px] md:min-h-[96px] rounded-[24px] transition-all duration-300 cursor-pointer select-none
+        relative flex flex-col justify-between p-1 sm:p-2.5 min-h-[56px] sm:min-h-[84px] md:min-h-[96px] rounded-[16px] sm:rounded-[24px] transition-all duration-300 cursor-pointer select-none
         ${getBackgroundColor()}
         ${
           isHighlighted
@@ -64,9 +64,9 @@ export const DayCell: React.FC<DayCellProps> = ({
     >
       {/* Top right: Event Count Badge */}
       {isCurrentMonth && totalCount > 0 && (
-        <div className="absolute top-2 right-2">
+        <div className="absolute top-1 right-1 sm:top-2 sm:right-2">
           <span 
-            className="flex items-center justify-center min-w-[22px] h-[22px] px-1 bg-gradient-to-br from-[#A78BFA] to-clay-accent text-white text-[11px] font-black rounded-full shadow-clayButton"
+            className="flex items-center justify-center min-w-[16px] h-[16px] sm:min-w-[22px] sm:h-[22px] px-1 bg-gradient-to-br from-[#A78BFA] to-clay-accent text-white text-[9px] sm:text-[11px] font-black rounded-full shadow-clayButton"
             style={{ fontFamily: 'var(--font-nunito)' }}
           >
             {totalCount}
@@ -77,7 +77,7 @@ export const DayCell: React.FC<DayCellProps> = ({
       {/* Center: Large Day Number */}
       <div className="flex-1 flex items-center justify-center pointer-events-none">
         <span
-          className={`text-3xl sm:text-4xl font-black tracking-tighter ${
+          className={`text-xl sm:text-3xl md:text-4xl font-black tracking-tighter ${
             isCurrentMonth ? 'text-clay-foreground' : 'text-clay-muted/40'
           }`}
           style={{ fontFamily: 'var(--font-nunito)' }}
