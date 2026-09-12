@@ -65,13 +65,13 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
 
         const payload = { contents: [{ parts: [{ text: prompt }] }] };
         const headers = { 'Content-Type': 'application/json' };
-        const models = ['gemini-2.0-flash-lite', 'gemini-1.5-flash', 'gemini-1.5-pro'];
+        const models = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-8b'];
 
         let data: any = null;
         let lastError = '';
         for (const model of models) {
           const res = await fetch(
-            `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${settings.aiApiKey}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${settings.aiApiKey}`,
             { method: 'POST', headers, body: JSON.stringify(payload) }
           );
           if (res.ok) {
