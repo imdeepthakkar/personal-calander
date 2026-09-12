@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {
+  Sparkles,
   Calendar as CalendarIcon,
   Clock,
   CheckSquare,
@@ -19,6 +20,7 @@ interface SidebarProps {
   onOpenNewEvent: () => void;
   onOpenSync: () => void;
   onOpenSettings: () => void;
+  onOpenBrief: () => void;
   primaryLabel: string;
   secondaryLabel: string;
 }
@@ -65,14 +67,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <CalendarIcon className="w-6 h-6" />
         </div>
 
-        {/* Quick Add Event / Task Button */}
-        <button
-          onClick={onOpenNewEvent}
-          className="w-12 h-12 rounded-[20px] bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white flex items-center justify-center shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed transition-all"
-          title="Create New Event or Task"
-        >
-          <PlusCircle className="w-6 h-6" />
-        </button>
+                {/* Quick Add Event / Task Button */}
+        <div className="flex flex-col gap-3">
+          <button
+            onClick={onOpenBrief}
+            className="w-12 h-12 rounded-[20px] bg-gradient-to-br from-[#0EA5E9] to-[#38BDF8] text-white flex items-center justify-center shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed transition-all"
+            title="Generate Daily Brief"
+          >
+            <Sparkles className="w-5 h-5" />
+          </button>
+          <button
+            onClick={onOpenNewEvent}
+            className="w-12 h-12 rounded-[20px] bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white flex items-center justify-center shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed transition-all"
+            title="Create New Event or Task"
+          >
+            <PlusCircle className="w-6 h-6" />
+          </button>
+        </div>
 
         {/* Divider */}
         <div className="w-10 h-[2px] bg-clay-muted/10 rounded-full" />

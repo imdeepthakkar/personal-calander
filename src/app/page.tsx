@@ -7,6 +7,7 @@ import { Sidebar, AppView } from '@/components/Sidebar';
 import { DayDetailDrawer } from '@/components/DayDetailDrawer';
 
 import { NewEventModal } from '@/components/NewEventModal';
+import { DailyBriefModal } from '@/components/DailyBriefModal';
 import { NewTaskModal } from '@/components/NewTaskModal';
 import { SyncModal } from '@/components/SyncModal';
 import { SettingsModal } from '@/components/SettingsModal';
@@ -45,6 +46,7 @@ export default function CalendarHome() {
   const [settingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState<boolean>(false);
   const [newEventModalOpen, setNewEventModalOpen] = useState<boolean>(false);
+  const [briefModalOpen, setBriefModalOpen] = useState<boolean>(false);
 
   // Load from IndexedDB on initial mount
   useEffect(() => {
@@ -305,6 +307,7 @@ export default function CalendarHome() {
         onOpenNewEvent={() => setNewEventModalOpen(true)}
         onOpenSync={() => setSyncModalOpen(true)}
         onOpenSettings={() => setSettingsModalOpen(true)}
+            onOpenBrief={() => setBriefModalOpen(true)}
         primaryLabel={settings.primaryLabel}
         secondaryLabel={settings.secondaryLabel}
       />
@@ -556,6 +559,14 @@ export default function CalendarHome() {
 
 
       {/* New Event Modal */}
+            <DailyBriefModal
+        isOpen={briefModalOpen}
+        onClose={() => setBriefModalOpen(false)}
+        events={events}
+        todos={todos}
+        settings={settings}
+      />
+
       <NewEventModal
         isOpen={newEventModalOpen}
         initialDateKey={selectedDateKey}
