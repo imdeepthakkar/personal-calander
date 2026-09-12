@@ -67,7 +67,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
         else if (currentHour >= 12 && currentHour < 17) timeOfDay = 'Afternoon';
         else if (currentHour >= 17 && currentHour < 22) timeOfDay = 'Evening';
 
-        const prompt = `Act as an energetic, highly intelligent, and motivating personal assistant. It is currently ${timeOfDay}. Summarize my schedule for ${displayDate.toLocaleDateString()} with enthusiasm! Greet me appropriately ("Good ${timeOfDay}") and make the briefing highly appealing, upbeat, and concise (max 3 sentences).\n\nMeetings:\n${eventsStr || 'None'}\n\nCritical Tasks:\n${todosStr || 'None'}`;
+        const prompt = `Act as an energetic, highly intelligent, and motivating personal assistant. It is currently ${timeOfDay} on ${new Date().toLocaleDateString()}. I am asking you to summarize my schedule for the date: ${displayDate.toLocaleDateString()}. Summarize this specific schedule with enthusiasm! Greet me appropriately ("Good ${timeOfDay}") and make the briefing highly appealing, upbeat, and concise (max 3 sentences).\n\nMeetings on ${displayDate.toLocaleDateString()}:\n${eventsStr || 'None'}\n\nCritical Tasks on ${displayDate.toLocaleDateString()}:\n${todosStr || 'None'}`;
 
         const payload = { contents: [{ parts: [{ text: prompt }] }] };
         const headers = { 'Content-Type': 'application/json' };
