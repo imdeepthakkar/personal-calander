@@ -33,12 +33,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   secondaryLabel,
 }) => {
   const navItems = [
-    {
-      id: 'matrix' as AppView,
-      icon: CalendarIcon,
-      label: 'Month Matrix',
-      action: () => onViewChange('matrix'),
-    },
+
     {
       id: 'week' as AppView,
       icon: Clock,
@@ -57,14 +52,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <aside className="w-16 sm:w-20 m-4 bg-white/70 shadow-clayCard backdrop-blur-xl border border-white/40 flex flex-col items-center py-6 justify-between h-[calc(100dvh-32px)] rounded-[32px] sticky top-4 z-20 select-none overflow-y-auto no-scrollbar transition-all duration-300">
       {/* Top Section: App Badge & Quick Create */}
       <div className="flex flex-col items-center gap-6">
-        {/* Brand Icon */}
+        {/* Brand / Month Matrix Icon */}
         <div
           onClick={() => onViewChange('matrix')}
-          className="w-12 h-12 rounded-[20px] bg-gradient-to-br from-pink-400 to-purple-600 flex items-center justify-center text-white font-black text-xl shadow-clayButton cursor-pointer hover:shadow-clayButtonHover hover:-translate-y-1 transition-all active:scale-[0.92] active:shadow-clayPressed"
-          title="Personal Calendar"
-          style={{ fontFamily: 'var(--font-nunito)' }}
+          className={`w-12 h-12 rounded-[20px] flex items-center justify-center transition-all cursor-pointer ${
+            currentView === 'matrix'
+              ? 'bg-[#EFEBF5] text-clay-accent shadow-clayPressed'
+              : 'bg-gradient-to-br from-pink-400 to-purple-600 text-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed'
+          }`}
+          title="Month Matrix"
         >
-          H
+          <CalendarIcon className="w-6 h-6" />
         </div>
 
         {/* Quick Add Event / Task Button */}
