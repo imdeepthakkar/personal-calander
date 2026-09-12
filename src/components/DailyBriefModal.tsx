@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Sparkles, Copy, Calendar, CheckSquare, Clock } from 'lucide-react';
 import { CalendarEvent, ToDoItem, UserSettings } from '@/types/calendar';
 import { formatDualTime } from '@/lib/timezones';
@@ -38,18 +38,79 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
     (t) => !t.completed && (t.dueDate === todayString || t.priority === 'urgent' || t.priority === 'high')
   );
 
+  
+  const [displayedText, setDisplayedText] = useState('');
+  const [fullText, setFullText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setDisplayedText('');
+      setFullText('');
+      setIsTypingComplete(false);
+      return;
+    }
+
+    // Generate the smart AI text
+    const hour = new Date().getHours();
+    let greeting = 'Good evening';
+    if (hour < 12) greeting = 'Good morning';
+    else if (hour < 17) greeting = 'Good afternoon';
+
+    const meetingCount = todaysEvents.length;
+    let scheduleVibe = 'light';
+    if (meetingCount > 4) scheduleVibe = 'heavy';
+    else if (meetingCount > 2) scheduleVibe = 'steady';
+
+    let text = `${greeting}! Looking at your schedule for ${displayDate.toLocaleDateString('en-US', { weekday: 'long' })}, `;
+
+    if (meetingCount === 0) {
+      text += 'your calendar is completely clear! ';
+    } else {
+      text += `you have a ${scheduleVibe} day ahead with ${meetingCount} meeting${meetingCount === 1 ? '' : 's'} scheduled. `;
+      
+      // Get first meeting
+      const firstMeeting = todaysEvents[0];
+      const firstTime = firstMeeting.startTime.split('T')[1].substring(0, 5);
+      text += `Your day kicks off with "${firstMeeting.title}" at ${firstTime}. `;
+    }
+
+    const taskCount = todaysTodos.length;
+    if (taskCount === 0) {
+      text += '\n\nOn the task front, you have no urgent action items. Take it easy!';
+    } else {
+      text += `\n\nOn the task front, you have ${taskCount} critical action item${taskCount === 1 ? '' : 's'} pending. `;
+      const topTask = todaysTodos.find(t => t.priority === 'urgent') || todaysTodos[0];
+      text += `Make sure to prioritize "${topTask.title}".`;
+    }
+    
+    text += '\n\nHave a productive day! ✨';
+
+    setFullText(text);
+    setDisplayedText('');
+    setIsTypingComplete(false);
+  }, [isOpen, dateKey, events, todos]);
+
+  useEffect(() => {
+    if (!fullText || isTypingComplete) return;
+    
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        setIsTypingComplete(true);
+        clearInterval(interval);
+      }
+    }, 25); // Typing speed
+
+    return () => clearInterval(interval);
+  }, [fullText]);
+
   const handleCopy = () => {
-    const text = `✨ Daily Briefing - ${todayString}\n\n🗓️ Meetings:\n${
-      todaysEvents.length > 0
-        ? todaysEvents.map((e) => `- ${e.startTime.split('T')[1].substring(0, 5)}: ${e.title}`).join('\n')
-        : '- No meetings today!'
-    }\n\n✅ Priority Tasks:\n${
-      todaysTodos.length > 0
-        ? todaysTodos.map((t) => `- [ ] ${t.title} (${t.priority.toUpperCase()})`).join('\n')
-        : '- No urgent tasks pending!'
-    }`;
-    navigator.clipboard.writeText(text);
-    alert('Briefing copied to clipboard!');
+    navigator.clipboard.writeText(fullText);
+    alert('AI Briefing copied to clipboard!');
   };
 
   return (
@@ -83,73 +144,22 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
 
         {/* Content */}
         <div className="p-8 flex flex-col gap-6 bg-white/40 max-h-[60vh] overflow-y-auto">
-          {/* Meetings Section */}
-          <div>
-            <h4 className="text-xs font-black text-clay-muted uppercase tracking-wider mb-3 flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-clay-sky" /> Today's Schedule
-            </h4>
-            {todaysEvents.length === 0 ? (
-              <div className="p-4 rounded-[24px] bg-white/50 border border-white/50 shadow-sm text-sm font-bold text-clay-muted/70 text-center">
-                Your schedule is clear!
-              </div>
-            ) : (
-              <div className="flex flex-col gap-2">
-                {todaysEvents.map((event) => {
-                  const dual = formatDualTime(
-                    event.startTime,
-                    settings.primaryTimezone,
-                    settings.primaryLabel,
-                    settings.secondaryTimezone,
-                    settings.secondaryLabel
-                  );
-                  return (
-                    <div key={event.id} className="p-3 rounded-[20px] bg-white border border-white/40 shadow-sm flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div 
-                          className="w-2 h-8 rounded-full"
-                          style={{ backgroundColor: event.calendarColor }}
-                        />
-                        <div>
-                          <p className="text-sm font-bold text-clay-foreground line-clamp-1">{event.title}</p>
-                          <p className="text-[10px] font-bold text-clay-muted uppercase tracking-wider">
-                            {dual.time1} • {event.calendarName}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+          
+          {/* AI Typewriter Output */}
+          <div className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-clayPressed rounded-[32px] p-6 relative min-h-[160px]">
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles className="w-4 h-4 text-[#A78BFA] animate-pulse" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#A78BFA]">AI Summary Agent</span>
+            </div>
+            
+            <p className="text-sm font-bold text-clay-foreground leading-relaxed whitespace-pre-wrap font-dm-sans">
+              {displayedText}
+              {!isTypingComplete && (
+                <span className="inline-block w-2 h-4 ml-1 bg-clay-accent animate-pulse" />
+              )}
+            </p>
           </div>
-
-          {/* Tasks Section */}
-          <div>
-            <h4 className="text-xs font-black text-clay-muted uppercase tracking-wider mb-3 flex items-center gap-2">
-              <CheckSquare className="w-4 h-4 text-clay-accent" /> Critical Action Items
-            </h4>
-            {todaysTodos.length === 0 ? (
-              <div className="p-4 rounded-[24px] bg-white/50 border border-white/50 shadow-sm text-sm font-bold text-clay-muted/70 text-center">
-                No pressing tasks for today!
-              </div>
-            ) : (
-              <div className="flex flex-col gap-2">
-                {todaysTodos.map((task) => (
-                  <div key={task.id} className="p-3 rounded-[20px] bg-[#EFEBF5]/50 border border-white/40 shadow-sm flex flex-col justify-center">
-                    <p className="text-sm font-bold text-clay-foreground flex items-center gap-2">
-                      <span className="w-4 h-4 rounded-full border-2 border-clay-muted/30" />
-                      {task.title}
-                    </p>
-                    {task.priority === 'urgent' && (
-                      <span className="ml-6 mt-1 self-start text-[9px] font-black uppercase tracking-widest text-red-500 bg-red-500/10 px-2 py-0.5 rounded-lg">
-                        Urgent Priority
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          
         </div>
 
         {/* Footer */}
