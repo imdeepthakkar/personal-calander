@@ -42,7 +42,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     {
       id: 'week' as AppView,
       icon: Clock,
-      label: 'Week Dual Timeline',
+      label: 'Week Timeline',
       action: () => onViewChange('week'),
     },
     {
@@ -103,16 +103,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Bottom Section: Timezones, Sync & Settings */}
       <div className="flex flex-col items-center gap-3">
-        {/* Dual TZ Indicator */}
-        <div
-          className="flex flex-col items-center justify-center p-1 rounded-md bg-[#deded4] text-[9px] font-bold text-zinc-700 tracking-tighter"
-          title={`Dual Timezones: ${primaryLabel} & ${secondaryLabel}`}
-        >
-          <Globe2 className="w-3.5 h-3.5 mb-0.5 text-zinc-600" />
-          <span>{primaryLabel}</span>
-          <span className="text-[8px] opacity-70">vs</span>
-          <span>{secondaryLabel}</span>
-        </div>
+
 
         {/* Sync Trigger */}
         <button

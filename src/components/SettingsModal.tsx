@@ -63,7 +63,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           <div className="flex items-center gap-2">
             <Settings className="w-4 h-4 text-zinc-700" />
             <h3 className="text-sm font-bold text-zinc-800">
-              Board & Dual-Timezone Configuration
+              Board Configuration
             </h3>
           </div>
           <button
