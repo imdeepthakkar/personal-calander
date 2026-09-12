@@ -89,7 +89,7 @@ export const NewEventModal: React.FC<NewEventModalProps> = ({
             <input
               type="text"
               required
-              placeholder="e.g. ICRB Architecture Sync"
+              placeholder="e.g. Team Architecture Sync"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="w-full px-3 py-2 rounded-lg border border-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 text-clay-foreground"
@@ -198,4 +198,5 @@ export const NewEventModal: React.FC<NewEventModalProps> = ({
     </div>
   );
 };
+
 

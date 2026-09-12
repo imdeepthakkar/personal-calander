@@ -52,7 +52,7 @@ const SAMPLE_MEETINGS = [
   { title: "Sprint Planning & Backlog Grooming", color: "#2563eb", source: "google" as const, cal: "Work Google" },
   { title: "Executive Architecture Sync - Heracles Core", color: "#7c3aed", source: "microsoft" as const, cal: "Office 365" },
   { title: "Cross-functional Product Sync (IST / US)", color: "#059669", source: "ical" as const, cal: "Engineering Cal" },
-  { title: "ICRB Milestone Review & Security Clearance", color: "#dc2626", source: "microsoft" as const, cal: "ICRB Review" },
+  { title: "Project Milestone Review & Security Clearance", color: "#dc2626", source: "microsoft" as const, cal: "ICRB Review" },
   { title: "Design Systems & UI/UX Guild Review", color: "#d97706", source: "google" as const, cal: "Design Guild" },
   { title: "Client Demo & Q3 Deliverables Walkthrough", color: "#4f46e5", source: "google" as const, cal: "Client Calls" },
   { title: "1:1 Sync with Principal Lead", color: "#0891b2", source: "local" as const, cal: "Personal" },
@@ -60,7 +60,7 @@ const SAMPLE_MEETINGS = [
 ];
 
 const SAMPLE_TODOS = [
-  { title: "Review ICRB architecture RFC document", priority: "urgent" as const, tag: "Compliance" },
+  { title: "Review project architecture RFC document", priority: "urgent" as const, tag: "Compliance" },
   { title: "Approve PR for multi-timezone calendar sync", priority: "high" as const, tag: "Engineering" },
   { title: "Prepare slide deck for quarterly planning", priority: "medium" as const, tag: "Leadership" },
   { title: "Sync with DevOps team regarding latency metrics", priority: "high" as const, tag: "Infra" },
@@ -161,3 +161,4 @@ export function generateSeptember2026Data(): { events: CalendarEvent[]; todos: T
 
   return { events, todos };
 }
+

@@ -5,7 +5,7 @@ import { Header } from '@/components/Header';
 import { CalendarGrid } from '@/components/CalendarGrid';
 import { Sidebar, AppView } from '@/components/Sidebar';
 import { DayDetailDrawer } from '@/components/DayDetailDrawer';
-import { BottomAlertBar } from '@/components/BottomAlertBar';
+
 import { NewEventModal } from '@/components/NewEventModal';
 import { NewTaskModal } from '@/components/NewTaskModal';
 import { SyncModal } from '@/components/SyncModal';
@@ -552,7 +552,7 @@ export default function CalendarHome() {
         }}
       />
 
-      {/* Bottom Alert Bar (ICRB 4 Days ticker & notification bubble) */}
+
       <BottomAlertBar
         events={events}
         todos={todos}
@@ -599,4 +599,5 @@ export default function CalendarHome() {
     </div>
   );
 }
+
 
