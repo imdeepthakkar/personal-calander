@@ -37,12 +37,12 @@ export const BottomAlertBar: React.FC<BottomAlertBarProps> = ({
   return (
     <div className="fixed bottom-0 left-14 sm:left-16 right-0 z-30 transition-all duration-300">
       {/* Collapsed Bar / Trigger */}
-      <div className="bg-[#faebd7] border-t border-[#e2d5c1] px-4 py-2 flex items-center justify-between shadow-lg">
+      <div className="bg-white/70 backdrop-blur-xl border-t border-white/40 shadow-clayCard px-4 py-2 flex items-center justify-between shadow-lg">
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-2 text-xs font-semibold text-amber-900 hover:text-amber-950 transition-colors"
+          className="flex items-center gap-2 text-xs font-semibold text-clay-foreground hover:text-clay-accent transition-colors"
         >
-          <AlertCircle className="w-4 h-4 text-amber-700 animate-pulse" />
+          <AlertCircle className="w-4 h-4 text-clay-accent animate-pulse" />
           <span>ICRB & Critical Reviews (Next 4 Days)</span>
           {expanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
         </button>
@@ -59,9 +59,9 @@ export const BottomAlertBar: React.FC<BottomAlertBarProps> = ({
 
       {/* Expandable Upcoming Panel */}
       {expanded && (
-        <div className="bg-[#fefdfa] border-t border-[#e2d5c1] p-4 max-h-72 overflow-y-auto shadow-2xl">
-          <div className="flex items-center justify-between pb-2 mb-3 border-b border-zinc-200">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-700">
+        <div className="bg-white/90 backdrop-blur-3xl border-t border-white/40 p-4 max-h-72 overflow-y-auto shadow-2xl">
+          <div className="flex items-center justify-between pb-2 mb-3 border-b border-white/50">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-clay-muted">
               Impending ICRB & Key Deliverables Window (Next 96 Hours)
             </h3>
 
@@ -94,7 +94,7 @@ export const BottomAlertBar: React.FC<BottomAlertBarProps> = ({
                         {item.calendarName}
                       </span>
                     </div>
-                    <div className="text-xs font-bold text-zinc-900 line-clamp-1">
+                    <div className="text-xs font-bold text-clay-foreground line-clamp-1">
                       {item.title}
                     </div>
                   </div>
