@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, Sparkles, Copy, Calendar, CheckSquare, Clock } from 'lucide-react';
+import { X, Sparkles, Copy, Calendar, CheckSquare } from 'lucide-react';
 import { CalendarEvent, ToDoItem, UserSettings } from '@/types/calendar';
 import { formatDualTime } from '@/lib/timezones';
 
@@ -22,13 +22,17 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
   settings,
   dateKey,
 }) => {
-  if (!isOpen) return null;
+  // ── ALL HOOKS MUST BE BEFORE ANY EARLY RETURN ──────────────────────────────
+  const [displayedText, setDisplayedText] = useState('');
+  const [fullText, setFullText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [isLoadingAI, setIsLoadingAI] = useState(false);
+  const [aiError, setAiError] = useState('');
 
-
+  // Derived values (computed each render, safe outside hooks)
   const todayString = dateKey || '2026-09-12';
   const [year, month, day] = todayString.split('-');
   const displayDate = new Date(Number(year), Number(month) - 1, Number(day));
-
 
   const todaysEvents = events
     .filter((e) => e.startTime.startsWith(todayString))
@@ -38,73 +42,74 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
     (t) => !t.completed && (t.dueDate === todayString || t.priority === 'urgent' || t.priority === 'high')
   );
 
-  const [displayedText, setDisplayedText] = useState('');
-  const [fullText, setFullText] = useState('');
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [isLoadingAI, setIsLoadingAI] = useState(false);
-  const [aiError, setAiError] = useState('');
-
+  // Fetch AI summary when modal opens (only if API key is set)
   useEffect(() => {
     if (!isOpen || !settings.aiApiKey) return;
-    
+
     const fetchSummary = async () => {
       setIsLoadingAI(true);
       setAiError('');
       setDisplayedText('');
       setFullText('');
       setIsTypingComplete(false);
-      
+
       try {
-        const eventsStr = todaysEvents.map(e => `- ${e.startTime.split('T')[1].substring(0,5)}: ${e.title}`).join('\n');
-        const todosStr = todaysTodos.map(t => `- ${t.title} (${t.priority})`).join('\n');
-        
-        const prompt = `Act as a highly intelligent, concise personal assistant. Summarize my day for ${displayDate.toLocaleDateString()}. Make it conversational but highly professional and extremely brief (max 3 sentences). \n\nMeetings:\n${eventsStr || 'None'}\n\nCritical Tasks:\n${todosStr || 'None'}`;
-        
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${settings.aiApiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }]
-          })
-        });
-        
+        const eventsStr = todaysEvents
+          .map((e) => `- ${e.startTime.split('T')[1].substring(0, 5)}: ${e.title}`)
+          .join('\n');
+        const todosStr = todaysTodos
+          .map((t) => `- ${t.title} (${t.priority})`)
+          .join('\n');
+
+        const prompt = `Act as a highly intelligent, concise personal assistant. Summarize my day for ${displayDate.toLocaleDateString()}. Make it conversational but highly professional and extremely brief (max 3 sentences).\n\nMeetings:\n${eventsStr || 'None'}\n\nCritical Tasks:\n${todosStr || 'None'}`;
+
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${settings.aiApiKey}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+          }
+        );
+
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));
-          console.error('Gemini API Error:', res.status, res.statusText, errData);
-          throw new Error(errData.error?.message || 'Failed to fetch from Gemini');
+          throw new Error((errData as any).error?.message || `Gemini error ${res.status}`);
         }
         const data = await res.json();
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No summary generated.';
-        
         setFullText(text);
       } catch (err) {
-        const e = err as any;
-        console.error("AI Error:", e);
-        setAiError(e.message || 'Failed to generate summary. Check your API key.');
+        const msg = err instanceof Error ? err.message : 'Failed to generate summary.';
+        console.error('AI Error:', msg);
+        setAiError(msg);
       } finally {
         setIsLoadingAI(false);
       }
     };
-    
-    fetchSummary();
-  }, [isOpen, dateKey, settings.aiApiKey]); 
 
+    fetchSummary();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, dateKey, settings.aiApiKey]);
+
+  // Typewriter effect
   useEffect(() => {
     if (!fullText || isTypingComplete || !settings.aiApiKey) return;
-    
-    let currentIndex = 0;
+    let idx = 0;
     const interval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayedText(fullText.slice(0, currentIndex));
-        currentIndex++;
+      if (idx <= fullText.length) {
+        setDisplayedText(fullText.slice(0, idx));
+        idx++;
       } else {
         setIsTypingComplete(true);
         clearInterval(interval);
       }
     }, 20);
-
     return () => clearInterval(interval);
   }, [fullText, isTypingComplete, settings.aiApiKey]);
+
+  // ── EARLY RETURN (after all hooks) ─────────────────────────────────────────
+  if (!isOpen) return null;
 
   const handleCopy = () => {
     let textToCopy = '';
@@ -135,7 +140,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h3 
+              <h3
                 className="text-xl font-black text-clay-foreground"
                 style={{ fontFamily: 'var(--font-nunito)' }}
               >
@@ -160,10 +165,12 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
             <div className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-clayPressed rounded-[32px] p-6 relative min-h-[160px]">
               <div className="flex items-center gap-2 mb-3">
                 <Sparkles className="w-4 h-4 text-[#A78BFA] animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#A78BFA]">Gemini Summary Agent</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#A78BFA]">
+                  Gemini Summary Agent
+                </span>
               </div>
-              <p className="text-sm font-bold text-clay-foreground leading-relaxed whitespace-pre-wrap font-dm-sans">
-                {isLoadingAI ? "Analyzing schedule..." : (aiError || displayedText)}
+              <p className="text-sm font-bold text-clay-foreground leading-relaxed whitespace-pre-wrap">
+                {isLoadingAI ? 'Analyzing schedule...' : aiError || displayedText}
                 {!isTypingComplete && !aiError && !isLoadingAI && (
                   <span className="inline-block w-2 h-4 ml-1 bg-clay-accent animate-pulse" />
                 )}
@@ -193,7 +200,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
                       return (
                         <div key={event.id} className="p-3 rounded-[20px] bg-white border border-white/40 shadow-sm flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div 
+                            <div
                               className="w-2 h-8 rounded-full"
                               style={{ backgroundColor: event.calendarColor }}
                             />
