@@ -57,8 +57,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-clay-foreground/10 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white/70 backdrop-blur-xl rounded-[48px] shadow-clayCard max-w-lg w-full overflow-hidden border border-white/40 animate-in fade-in zoom-in-95 duration-300">
-        <div className="flex items-center justify-between px-8 py-6 border-b border-white/40 bg-white/40">
+      <div className="bg-white/70 backdrop-blur-xl rounded-[36px] shadow-clayCard max-w-md scale-90 w-full overflow-hidden border border-white/40 animate-in fade-in zoom-in-95 duration-300">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-white/40 bg-white/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-[#EFEBF5] shadow-clayPressed text-clay-accent">
               <Settings className="w-5 h-5" />
@@ -78,7 +78,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSave} className="p-8 flex flex-col gap-6 text-sm bg-white/40">
+        <form onSubmit={handleSave} className="p-6 flex flex-col gap-4 text-xs text-sm bg-white/40">
           <div>
             <label className="block text-xs font-black text-clay-muted uppercase tracking-wider mb-2 flex items-center gap-2">
               <Type className="w-4 h-4" /> Dashboard Board Title
@@ -88,11 +88,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               required
               value={boardTitle}
               onChange={(e) => setBoardTitle(e.target.value)}
-              className="w-full px-5 py-4 rounded-2xl bg-[#EFEBF5] border-none focus:ring-4 focus:ring-clay-accent/20 focus:bg-white text-clay-foreground uppercase font-black text-lg shadow-clayPressed transition-all"
+              className="w-full px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none focus:ring-4 focus:ring-clay-accent/20 focus:bg-white text-clay-foreground uppercase font-black text-lg shadow-clayPressed transition-all"
             />
           </div>
 
-          <div className="p-6 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+          <div className="p-5 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
             <label className="block text-xs font-black text-clay-success uppercase tracking-wider mb-3 flex items-center gap-2">
               <Globe className="w-4 h-4" /> Primary Timezone (Left Pill & Green Badge)
             </label>
@@ -118,7 +118,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          <div className="p-6 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+          <div className="p-5 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
             <label className="block text-xs font-black text-clay-sky uppercase tracking-wider mb-3 flex items-center gap-2">
               <Globe className="w-4 h-4" /> Secondary Timezone (Right Pill & Blue Badge)
             </label>
@@ -144,7 +144,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          <div className="p-6 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+          <div className="p-5 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
             <label className="block text-xs font-black text-clay-muted uppercase tracking-wider mb-3 flex items-center gap-2">
               <Clock className="w-4 h-4" /> Core Working Hours Window
             </label>
@@ -157,7 +157,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   max={23}
                   value={workingHoursStart}
                   onChange={(e) => setWorkingHoursStart(Number(e.target.value))}
-                  className="w-full px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground text-lg font-black text-center shadow-clayPressed focus:ring-4 focus:ring-clay-accent/20 focus:bg-white transition-all"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground text-sm font-black text-center shadow-clayPressed focus:ring-4 focus:ring-clay-accent/20 focus:bg-white transition-all"
                 />
               </div>
               <div>
@@ -168,7 +168,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   max={23}
                   value={workingHoursEnd}
                   onChange={(e) => setWorkingHoursEnd(Number(e.target.value))}
-                  className="w-full px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground text-lg font-black text-center shadow-clayPressed focus:ring-4 focus:ring-clay-accent/20 focus:bg-white transition-all"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground text-sm font-black text-center shadow-clayPressed focus:ring-4 focus:ring-clay-accent/20 focus:bg-white transition-all"
                 />
               </div>
             </div>
@@ -188,3 +188,4 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     </div>
   );
 };
+
