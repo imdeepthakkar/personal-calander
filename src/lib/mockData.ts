@@ -1,17 +1,17 @@
 import { CalendarEvent, ToDoItem, UserSettings } from "@/types/calendar";
 
 export const DEFAULT_SETTINGS: UserSettings = {
-  primaryTimezone: "Asia/Kolkata",
-  primaryLabel: "IST",
-  secondaryTimezone: "America/Chicago",
-  secondaryLabel: "CST",
+  primaryTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "Europe/Berlin",
+  primaryLabel: "LOCAL",
+  secondaryTimezone: "UTC",
+  secondaryLabel: "UTC",
   workingHoursStart: 9,
   workingHoursEnd: 18,
   boardTitle: "PERSONAL CALENDAR",
   googleConnected: false,
   microsoftConnected: false,
   icalFeeds: [],
-  useDemoData: true,
+  useDemoData: false,
 };
 
 // Daily target distribution matching the screenshot exactly for September 2026

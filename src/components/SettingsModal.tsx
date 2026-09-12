@@ -46,9 +46,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
       ...settings,
       boardTitle: boardTitle.trim() || 'PERSONAL CALENDAR',
       primaryTimezone,
-      primaryLabel: primaryLabel.trim() || 'IST',
+      primaryLabel: primaryLabel.trim() || 'LOCAL',
       secondaryTimezone,
-      secondaryLabel: secondaryLabel.trim() || 'CST',
+      secondaryLabel: secondaryLabel.trim() || 'REMOTE',
       workingHoursStart: Number(workingHoursStart),
       workingHoursEnd: Number(workingHoursEnd),
     });
