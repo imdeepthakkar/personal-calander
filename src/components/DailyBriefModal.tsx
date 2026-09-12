@@ -121,6 +121,8 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
     let textToCopy = '';
     if (settings.aiApiKey && fullText) {
       textToCopy = fullText;
+    } else if (settings.aiApiKey && aiError) {
+      textToCopy = `AI Error: ${aiError}`;
     } else {
       textToCopy = `✨ Daily Briefing - ${todayString}\n\n🗓️ Meetings:\n${
         todaysEvents.length > 0
