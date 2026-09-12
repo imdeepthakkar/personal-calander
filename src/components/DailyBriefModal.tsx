@@ -60,7 +60,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
         
         const prompt = `Act as a highly intelligent, concise personal assistant. Summarize my day for ${displayDate.toLocaleDateString()}. Make it conversational but highly professional and extremely brief (max 3 sentences). \n\nMeetings:\n${eventsStr || 'None'}\n\nCritical Tasks:\n${todosStr || 'None'}`;
         
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${settings.aiApiKey}`, {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${settings.aiApiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -68,13 +68,18 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
           })
         });
         
-        if (!res.ok) throw new Error('Failed to fetch from Gemini');
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          console.error('Gemini API Error:', res.status, res.statusText, errData);
+          throw new Error(errData.error?.message || 'Failed to fetch from Gemini');
+        }
         const data = await res.json();
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No summary generated.';
         
         setFullText(text);
-      } catch (err) {
-        setAiError('Failed to generate summary. Check your API key.');
+      } catch (err: any) {
+        console.error("AI Error:", err);
+        setAiError(err.message || 'Failed to generate summary. Check your API key.');
       } finally {
         setIsLoadingAI(false);
       }
