@@ -13,8 +13,6 @@ interface HeaderProps {
   tz1Count: number;
   tz2Count: number;
   settings: UserSettings;
-  onOpenSync: () => void;
-  onOpenSettings: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -26,8 +24,6 @@ export const Header: React.FC<HeaderProps> = ({
   tz1Count,
   tz2Count,
   settings,
-  onOpenSync,
-  onOpenSettings,
 }) => {
   const monthYearString = new Intl.DateTimeFormat('en-US', {
     month: 'long',
@@ -77,21 +73,6 @@ export const Header: React.FC<HeaderProps> = ({
           title="Jump to Today"
         >
           <RotateCcw className="w-4 h-4" />
-        </button>
-        <div className="w-px h-4 bg-zinc-300 mx-1" />
-        <button
-          onClick={onOpenSync}
-          className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-800 hover:bg-zinc-200/60 transition-colors"
-          title="Sync Calendars"
-        >
-          <RefreshCw className="w-4 h-4" />
-        </button>
-        <button
-          onClick={onOpenSettings}
-          className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-800 hover:bg-zinc-200/60 transition-colors"
-          title="Settings"
-        >
-          <Settings className="w-4 h-4" />
         </button>
       </div>
     </header>

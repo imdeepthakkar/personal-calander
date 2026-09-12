@@ -1,7 +1,7 @@
 import { CalendarEvent, ToDoItem, UserSettings } from "@/types/calendar";
 
 export const DEFAULT_SETTINGS: UserSettings = {
-  primaryTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "Europe/Berlin",
+  primaryTimezone: "Europe/Berlin",
   primaryLabel: "LOCAL",
   secondaryTimezone: "UTC",
   secondaryLabel: "UTC",
