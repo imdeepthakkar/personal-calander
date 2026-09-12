@@ -69,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
                 {/* Quick Add Event / Task Button */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-row md:flex-col gap-2 md:gap-3">
           <button
             onClick={onOpenBrief}
             className="w-12 h-12 rounded-[20px] bg-gradient-to-br from-[#0EA5E9] to-[#38BDF8] text-white flex items-center justify-center shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed transition-all"
@@ -87,10 +87,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Divider */}
-        <div className="w-10 h-[2px] bg-clay-muted/10 rounded-full" />
+        <div className="hidden md:block w-10 h-[2px] bg-clay-muted/10 rounded-full" />
 
         {/* Navigation Views */}
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentView === item.id;
@@ -112,10 +112,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Divider */}
-        <div className="w-10 h-[2px] bg-clay-muted/10 rounded-full my-1" />
+        <div className="hidden md:block w-10 h-[2px] bg-clay-muted/10 rounded-full my-1" />
 
         {/* Sync & Settings */}
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3">
           <button
             onClick={onOpenSync}
             className="w-12 h-12 rounded-[20px] text-clay-muted hover:bg-white/80 hover:text-clay-foreground flex items-center justify-center transition-all duration-200 hover:-translate-y-1 shadow-sm shrink-0"
