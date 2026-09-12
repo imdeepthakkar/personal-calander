@@ -29,7 +29,8 @@ import { CheckCircle2, Circle, Clock, Trash2, Video, Plus } from 'lucide-react';
 import { formatDualTime } from '@/lib/timezones';
 
 export default function CalendarHome() {
-  const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const [currentDate, setCurrentDate] = useState<Date>(new Date(2026, 8, 12)); // Fallback static date for SSR
+  const [actualToday, setActualToday] = useState<Date>(new Date(2026, 8, 12)); // Fallback static for SSR
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [todos, setTodos] = useState<ToDoItem[]>([]);
   const [settings, setSettings] = useState<UserSettings>(DEFAULT_SETTINGS);
@@ -37,10 +38,7 @@ export default function CalendarHome() {
 
   // View state
   const [currentView, setCurrentView] = useState<AppView>('matrix');
-  const [selectedDateKey, setSelectedDateKey] = useState<string>(() => {
-    const today = new Date();
-    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-  });
+  const [selectedDateKey, setSelectedDateKey] = useState<string>('2026-09-12');
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const [syncModalOpen, setSyncModalOpen] = useState<boolean>(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
@@ -58,6 +56,12 @@ export default function CalendarHome() {
         setSettings(loadedSettings);
         setEvents(loadedEvents);
         setTodos(loadedTodos);
+
+        // Safely set the actual local date on the client side
+        const today = new Date();
+        setActualToday(today);
+        setCurrentDate(today);
+        setSelectedDateKey(`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`);
       } catch (err) {
         console.error('Failed to initialize storage:', err);
       } finally {
@@ -142,7 +146,7 @@ export default function CalendarHome() {
       else if (dayTotal > 5 && dayTotal <= 12) heatLevel = 'medium';
       else if (dayTotal > 12) heatLevel = 'high';
 
-      const isToday = new Date().toDateString() === date.toDateString();
+      const isToday = actualToday.toDateString() === date.toDateString();
 
       days.push({
         date,
@@ -188,7 +192,7 @@ export default function CalendarHome() {
       monthTz1Total: grandTz1,
       monthTz2Total: grandTz2,
     };
-  }, [currentDate, events, todos]);
+  }, [currentDate, events, todos, actualToday]);
 
   // Selected day workload object for drawer
   const selectedWorkload = useMemo(() => {
