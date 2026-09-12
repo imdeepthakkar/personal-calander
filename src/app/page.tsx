@@ -7,6 +7,7 @@ import { Sidebar, AppView } from '@/components/Sidebar';
 import { DayDetailDrawer } from '@/components/DayDetailDrawer';
 import { BottomAlertBar } from '@/components/BottomAlertBar';
 import { NewEventModal } from '@/components/NewEventModal';
+import { NewTaskModal } from '@/components/NewTaskModal';
 import { SyncModal } from '@/components/SyncModal';
 import { SettingsModal } from '@/components/SettingsModal';
 import {
@@ -42,6 +43,7 @@ export default function CalendarHome() {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const [syncModalOpen, setSyncModalOpen] = useState<boolean>(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
+  const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState<boolean>(false);
   const [newEventModalOpen, setNewEventModalOpen] = useState<boolean>(false);
 
   // Load from IndexedDB on initial mount
@@ -348,12 +350,20 @@ export default function CalendarHome() {
                     Daily commitments and scheduled events
                   </p>
                 </div>
-                <button
-                  onClick={() => setCurrentView('matrix')}
-                  className="px-4 py-2 rounded-2xl bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-sm font-bold text-clay-foreground transition-all"
-                >
-                  Back to Matrix View
-                </button>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setIsNewTaskModalOpen(true)}
+                    className="px-6 py-3 rounded-2xl bg-gradient-to-br from-[#A78BFA] to-clay-accent shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 text-sm font-black text-white transition-all flex items-center gap-2 tracking-wide"
+                  >
+                    <Plus className="w-4 h-4" /> Add Task
+                  </button>
+                  <button
+                    onClick={() => setCurrentView('matrix')}
+                    className="px-6 py-3 rounded-2xl bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-sm font-black text-clay-foreground transition-all tracking-wide"
+                  >
+                    Matrix View
+                  </button>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
@@ -434,30 +444,31 @@ export default function CalendarHome() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Pending */}
                 <div className="bg-[#EFEBF5]/50 p-6 rounded-[32px] border border-white/50 shadow-clayPressed">
-                <h3 className="font-bold text-xs uppercase tracking-wider text-zinc-700 mb-3 flex items-center justify-between">
+                <h3 className="font-bold text-xs uppercase tracking-wider text-clay-muted mb-4 flex items-center justify-between">
                   <span>Pending Tasks ({todos.filter((t) => !t.completed).length})</span>
                 </h3>
+                
                 <div className="flex flex-col gap-2 max-h-[500px] overflow-y-auto">
                   {todos
                     .filter((t) => !t.completed)
                     .map((t) => (
                       <div
                         key={t.id}
-                        className="p-2.5 rounded-lg border border-zinc-200 bg-[#fafaf7] flex items-start justify-between"
+                        className="p-4 rounded-[20px] shadow-clayCard border border-white/40 bg-white flex items-start justify-between"
                       >
                         <div className="flex items-start gap-2">
                           <button
                             type="button"
                             onClick={() => handleToggleTodo(t.id)}
-                            className="text-zinc-400 hover:text-blue-600 mt-0.5"
+                            className="text-clay-muted hover:text-clay-accent mt-0.5 transition-colors"
                           >
                             <Circle className="w-4 h-4" />
                           </button>
                           <div>
-                            <p className="text-xs font-semibold text-zinc-900">{t.title}</p>
-                            <div className="flex items-center gap-1.5 mt-1 text-[10px] text-zinc-500">
+                            <p className="text-sm font-bold text-clay-foreground">{t.title}</p>
+                            <div className="flex items-center gap-2 mt-1 text-[11px] font-bold text-clay-muted tracking-wider">
                               <span>Due: {t.dueDate}</span>
-                              <span className="uppercase px-1.5 rounded bg-zinc-200 text-zinc-700 font-bold">
+                              <span className="uppercase px-2 py-0.5 rounded-[8px] bg-[#EFEBF5] text-clay-muted shadow-clayPressed">
                                 {t.priority}
                               </span>
                             </div>
@@ -465,7 +476,7 @@ export default function CalendarHome() {
                         </div>
                         <button
                           onClick={() => handleDeleteTodo(t.id)}
-                          className="text-zinc-400 hover:text-red-500 p-1"
+                          className="text-clay-muted hover:text-red-500 p-1 transition-colors"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -475,8 +486,8 @@ export default function CalendarHome() {
               </div>
 
               {/* Completed */}
-              <div className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs">
-                <h3 className="font-bold text-xs uppercase tracking-wider text-zinc-700 mb-3">
+              <div className="bg-[#EFEBF5]/50 p-6 rounded-[32px] border border-white/50 shadow-clayPressed">
+                <h3 className="font-bold text-xs uppercase tracking-wider text-clay-muted mb-4 flex items-center justify-between">
                   Completed Tasks ({todos.filter((t) => t.completed).length})
                 </h3>
                 <div className="flex flex-col gap-2 max-h-[500px] overflow-y-auto">
@@ -491,20 +502,20 @@ export default function CalendarHome() {
                           <button
                             type="button"
                             onClick={() => handleToggleTodo(t.id)}
-                            className="text-emerald-600 mt-0.5"
+                            className="text-clay-success mt-0.5"
                           >
                             <CheckCircle2 className="w-4 h-4" />
                           </button>
                           <div>
-                            <p className="text-xs font-semibold text-zinc-700 line-through">
+                            <p className="text-sm font-bold text-clay-muted line-through">
                               {t.title}
                             </p>
-                            <span className="text-[10px] text-zinc-400">Completed</span>
+                            <span className="text-[11px] font-bold text-clay-muted/60 tracking-wider">COMPLETED</span>
                           </div>
                         </div>
                         <button
                           onClick={() => handleDeleteTodo(t.id)}
-                          className="text-zinc-400 hover:text-red-500 p-1"
+                          className="text-clay-muted hover:text-red-500 p-1 transition-colors"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -563,6 +574,14 @@ export default function CalendarHome() {
       />
 
       {/* Settings Modal */}
+      
+      <NewTaskModal
+        isOpen={isNewTaskModalOpen}
+        settings={settings}
+        onClose={() => setIsNewTaskModalOpen(false)}
+        onAddTask={handleAddTodo}
+      />
+
       <SettingsModal
         isOpen={settingsModalOpen}
         settings={settings}
