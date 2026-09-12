@@ -514,6 +514,7 @@ export default function CalendarHome() {
               </div>
             </div>
           </div>
+          </div>
         )}
       </main>
 
