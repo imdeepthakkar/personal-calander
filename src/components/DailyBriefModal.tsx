@@ -147,9 +147,9 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-clay-foreground/10 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white/70 backdrop-blur-xl rounded-[48px] shadow-clayCard max-w-lg w-full overflow-hidden border border-white/40 animate-in fade-in zoom-in-95 duration-300">
+      <div className="bg-white/70 backdrop-blur-xl rounded-[32px] md:rounded-[48px] shadow-clayCard max-w-lg w-full overflow-hidden border border-white/40 animate-in fade-in zoom-in-95 duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-6 border-b border-white/40 bg-white/40">
+        <div className="flex items-center justify-between px-5 py-4 md:px-8 md:py-6 border-b border-white/40 bg-white/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-gradient-to-br from-[#A78BFA] to-clay-accent text-white shadow-clayButton">
               <Sparkles className="w-5 h-5" />
@@ -175,9 +175,9 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-8 flex flex-col gap-6 bg-white/40 max-h-[60vh] overflow-y-auto">
+        <div className="p-5 md:p-8 flex flex-col gap-5 md:gap-6 bg-white/40 max-h-[60vh] overflow-y-auto">
           {settings.aiApiKey ? (
-            <div className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-clayPressed rounded-[32px] p-6 relative min-h-[160px]">
+            <div className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-clayPressed rounded-[24px] md:rounded-[32px] p-5 md:p-6 relative min-h-[160px]">
               <div className="flex items-center gap-2 mb-3">
                 <Sparkles className="w-4 h-4 text-[#A78BFA] animate-pulse" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-[#A78BFA]">
@@ -265,7 +265,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-6 bg-white/50 border-t border-white/40 flex gap-3">
+        <div className="p-5 md:p-6 bg-white/50 border-t border-white/40 flex gap-3">
           <button
             onClick={handleCopy}
             className="flex-1 flex items-center justify-center gap-2 py-4 rounded-[20px] bg-white text-clay-foreground font-black tracking-widest uppercase shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed transition-all"

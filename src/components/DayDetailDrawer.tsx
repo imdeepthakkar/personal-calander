@@ -48,7 +48,7 @@ export const DayDetailDrawer: React.FC<DayDetailDrawerProps> = ({
       />
 
       {/* Slide-over Drawer */}
-      <div className="fixed top-4 right-4 bottom-4 w-full sm:w-[480px] bg-white/70 backdrop-blur-xl border border-white/40 shadow-clayCard rounded-[32px] z-50 flex flex-col overflow-hidden animate-in slide-in-from-right duration-300">
+      <div className="fixed top-4 right-4 bottom-24 md:bottom-4 left-4 sm:left-auto w-[calc(100%-2rem)] sm:w-[480px] bg-white/70 backdrop-blur-xl border border-white/40 shadow-clayCard rounded-[32px] z-50 flex flex-col overflow-hidden animate-in slide-in-from-right duration-300">
         {/* Drawer Header */}
         <div className="p-8 border-b border-white/40 bg-white/40">
           <div className="flex items-start justify-between">

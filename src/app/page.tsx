@@ -293,7 +293,7 @@ export default function CalendarHome() {
   }
 
   return (
-    <div className="flex min-h-screen bg-clay-canvas text-clay-foreground relative overflow-hidden z-0">
+    <div className="flex flex-col md:flex-row min-h-screen bg-clay-canvas text-clay-foreground relative overflow-hidden z-0">
       {/* Animated 3D Floating Blobs Background */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden -z-10">
         <div className="absolute h-[60vh] w-[60vh] rounded-full bg-[#8B5CF6]/15 blur-3xl -top-[10%] -left-[10%] animate-clay-float" />
@@ -313,7 +313,7 @@ export default function CalendarHome() {
       />
 
       {/* Main Workspace Area */}
-      <main className="flex-1 flex flex-col min-w-0 pb-16">
+      <main className="flex-1 flex flex-col min-w-0 pb-24 md:pb-16 w-full">
         {/* View 1: Month Heatmap Matrix (Screenshot 1:1 Layout) */}
         {currentView === 'matrix' && (
           <div className="flex flex-col items-center w-full">
@@ -339,9 +339,9 @@ export default function CalendarHome() {
 
         {/* View 2: Week Dual-Timeline View */}
         {currentView === 'week' && (
-          <div className="p-6 max-w-6xl mx-auto w-full relative z-10">
-            <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-8">
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/50">
+          <div className="p-3 sm:p-6 max-w-6xl mx-auto w-full relative z-10">
+            <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[32px] md:rounded-[48px] p-4 sm:p-6 md:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 pb-4 border-b border-white/50">
                 <div>
                   <h2 
                     className="text-3xl font-black text-clay-foreground"
@@ -414,9 +414,9 @@ export default function CalendarHome() {
 
                 {/* View 3: All Tasks & To-Do Board */}
         {currentView === 'todos' && (
-          <div className="p-6 max-w-5xl mx-auto w-full relative z-10">
-            <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-8">
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/50">
+          <div className="p-3 sm:p-6 max-w-5xl mx-auto w-full relative z-10">
+            <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[32px] md:rounded-[48px] p-4 sm:p-6 md:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 pb-4 border-b border-white/50">
                 <div>
                   <h2 
                     className="text-3xl font-black text-clay-foreground"

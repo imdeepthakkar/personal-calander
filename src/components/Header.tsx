@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="flex flex-col items-center justify-center pt-6 pb-2 px-4 w-full">
       {/* Title */}
       <h1 
-        className="text-4xl font-black tracking-tight text-clay-foreground uppercase mb-2 select-none"
+        className="text-3xl md:text-4xl font-black tracking-tight text-clay-foreground uppercase mb-2 select-none"
         style={{ fontFamily: 'var(--font-nunito)' }}
       >
         {settings.boardTitle || 'PERSONAL CALENDAR'}
@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
 
         <span 
-          className="text-2xl font-bold text-clay-foreground tracking-tight min-w-[200px] text-center"
+          className="text-xl md:text-2xl font-bold text-clay-foreground tracking-tight min-w-[140px] sm:min-w-[160px] md:min-w-[200px] text-center"
           style={{ fontFamily: 'var(--font-nunito)' }}
         >
           {monthYearString}
@@ -69,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onToday}
-          className="px-4 py-2.5 rounded-[16px] text-sm font-bold text-clay-foreground bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed transition-all ml-2"
+          className="px-3 sm:px-4 py-2.5 rounded-[16px] text-xs sm:text-sm font-bold text-clay-foreground bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed transition-all ml-2"
           title="Jump to Today"
         >
           TODAY

@@ -21,16 +21,16 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
 }) => {
   return (
     <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 pb-6 select-none relative z-10">
-      <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-4 sm:p-6 transition-all duration-500 hover:shadow-[16px_16px_40px_rgba(160,150,180,0.3),-10px_-10px_30px_rgba(255,255,255,1),inset_6px_6px_12px_rgba(139,92,246,0.03),inset_-6px_-6px_12px_rgba(255,255,255,1)]">
+      <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[32px] md:rounded-[48px] p-2 sm:p-4 md:p-6 transition-all duration-500 hover:shadow-[16px_16px_40px_rgba(160,150,180,0.3),-10px_-10px_30px_rgba(255,255,255,1),inset_6px_6px_12px_rgba(139,92,246,0.03),inset_-6px_-6px_12px_rgba(255,255,255,1)]">
         {/* Weekday Column Headers */}
         <div className="grid grid-cols-8 gap-1 sm:gap-3 mb-2 text-center">
-          <div className="py-2 text-[11px] font-black text-clay-muted/50 tracking-widest uppercase">
+          <div className="py-2 text-[9px] sm:text-[11px] font-black text-clay-muted/50 tracking-widest uppercase">
             WK
           </div>
           {WEEKDAYS.map((day) => (
             <div
               key={day}
-              className="py-2 text-[11px] font-black text-clay-muted tracking-widest uppercase"
+              className="py-2 text-[9px] sm:text-[11px] font-black text-clay-muted tracking-widest uppercase"
               style={{ fontFamily: 'var(--font-nunito)' }}
             >
               {day}
@@ -39,7 +39,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
         </div>
 
         {/* 8-Column Grid (1 for WK, 7 for Days) */}
-        <div className="flex flex-col gap-2 sm:gap-3">
+        <div className="flex flex-col gap-1 sm:gap-2 md:gap-3">
           {Array.from({ length: days.length / 7 }).map((_, weekIndex) => {
             const weekDays = days.slice(weekIndex * 7, (weekIndex + 1) * 7);
             
