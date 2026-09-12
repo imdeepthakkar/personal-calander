@@ -77,9 +77,10 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No summary generated.';
         
         setFullText(text);
-      } catch (err: any) {
-        console.error("AI Error:", err);
-        setAiError(err.message || 'Failed to generate summary. Check your API key.');
+      } catch (err) {
+        const e = err as any;
+        console.error("AI Error:", e);
+        setAiError(e.message || 'Failed to generate summary. Check your API key.');
       } finally {
         setIsLoadingAI(false);
       }
