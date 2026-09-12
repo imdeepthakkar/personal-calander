@@ -54,7 +54,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <aside className="w-14 sm:w-16 bg-[#e8e8df] border-r border-[#d8d8ce] flex flex-col items-center py-4 justify-between h-screen sticky top-0 z-20 select-none overflow-y-auto no-scrollbar">
+    <aside className="w-14 sm:w-16 bg-[#e8e8df] border-r border-[#d8d8ce] flex flex-col items-center pt-4 pb-8 justify-between h-[100dvh] sticky top-0 z-20 select-none overflow-y-auto no-scrollbar">
       {/* Top Section: App Badge & Quick Create */}
       <div className="flex flex-col items-center gap-4">
         {/* Brand Icon */}
@@ -99,24 +99,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
             );
           })}
         </div>
-      </div>
 
-      {/* Bottom Section: Timezones, Sync & Settings */}
-      <div className="flex flex-col items-center gap-3 mt-auto">
-        <button
-          onClick={onOpenSync}
-          className="w-10 h-10 rounded-lg text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900 flex items-center justify-center transition-colors shrink-0"
-          title="Sync Calendars"
-        >
-          <RefreshCw className="w-5 h-5" />
-        </button>
-        <button
-          onClick={onOpenSettings}
-          className="w-10 h-10 rounded-lg text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900 flex items-center justify-center transition-colors shrink-0"
-          title="Settings"
-        >
-          <Settings className="w-5 h-5" />
-        </button>
+        {/* Divider */}
+        <div className="w-8 h-px bg-zinc-300 my-2" />
+
+        {/* Sync & Settings */}
+        <div className="flex flex-col items-center gap-2">
+          <button
+            onClick={onOpenSync}
+            className="w-10 h-10 rounded-lg text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900 flex items-center justify-center transition-colors shrink-0"
+            title="Sync Calendars"
+          >
+            <RefreshCw className="w-5 h-5" />
+          </button>
+          <button
+            onClick={onOpenSettings}
+            className="w-10 h-10 rounded-lg text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900 flex items-center justify-center transition-colors shrink-0"
+            title="Settings"
+          >
+            <Settings className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </aside>
   );
