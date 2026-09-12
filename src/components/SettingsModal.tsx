@@ -25,6 +25,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   const [secondaryLabel, setSecondaryLabel] = useState(settings.secondaryLabel);
   const [workingHoursStart, setWorkingHoursStart] = useState(settings.workingHoursStart || 9);
   const [workingHoursEnd, setWorkingHoursEnd] = useState(settings.workingHoursEnd || 18);
+  const [aiApiKey, setAiApiKey] = useState(settings.aiApiKey || "");
 
   if (!isOpen) return null;
 
