@@ -63,20 +63,26 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
 
         const prompt = `Act as a highly intelligent, concise personal assistant. Summarize my day for ${displayDate.toLocaleDateString()}. Make it conversational but highly professional and extremely brief (max 3 sentences).\n\nMeetings:\n${eventsStr || 'None'}\n\nCritical Tasks:\n${todosStr || 'None'}`;
 
-        const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${settings.aiApiKey}`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
-          }
-        );
+        const payload = { contents: [{ parts: [{ text: prompt }] }] };
+        const headers = { 'Content-Type': 'application/json' };
+        const models = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro'];
 
-        if (!res.ok) {
+        let data: any = null;
+        let lastError = '';
+        for (const model of models) {
+          const res = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${settings.aiApiKey}`,
+            { method: 'POST', headers, body: JSON.stringify(payload) }
+          );
+          if (res.ok) {
+            data = await res.json();
+            break;
+          }
           const errData = await res.json().catch(() => ({}));
-          throw new Error((errData as any).error?.message || `Gemini error ${res.status}`);
+          lastError = (errData as any).error?.message || `Model ${model} failed (${res.status})`;
         }
-        const data = await res.json();
+
+        if (!data) throw new Error(lastError || 'All Gemini models failed.');
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No summary generated.';
         setFullText(text);
       } catch (err) {
