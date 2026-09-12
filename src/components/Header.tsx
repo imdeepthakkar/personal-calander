@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ChevronLeft, ChevronRight, RotateCcw, Settings, RefreshCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CalendarDays, Settings, RefreshCw } from 'lucide-react';
 import { UserSettings } from '@/types/calendar';
 
 interface HeaderProps {
@@ -69,10 +69,10 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onToday}
-          className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-800 hover:bg-zinc-200/60 transition-colors ml-1"
+          className="px-2.5 py-1 rounded-full text-[11px] font-bold text-zinc-600 bg-zinc-200/50 hover:text-zinc-900 hover:bg-zinc-200 transition-colors ml-2"
           title="Jump to Today"
         >
-          <RotateCcw className="w-4 h-4" />
+          TODAY
         </button>
       </div>
     </header>
