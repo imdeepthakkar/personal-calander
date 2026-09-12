@@ -108,7 +108,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
                         <div>
                           <p className="text-sm font-bold text-clay-foreground line-clamp-1">{event.title}</p>
                           <p className="text-[10px] font-bold text-clay-muted uppercase tracking-wider">
-                            {dual.primary.time} • {event.calendarName}
+                            {dual.time1} • {event.calendarName}
                           </p>
                         </div>
                       </div>
