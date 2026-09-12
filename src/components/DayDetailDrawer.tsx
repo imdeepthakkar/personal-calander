@@ -75,12 +75,7 @@ export const DayDetailDrawer: React.FC<DayDetailDrawerProps> = ({
             <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#7a1236] text-white">
               Total: {workload.totalCount}
             </span>
-            <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#c5dfc2] text-[#22401e]">
-              {settings.primaryLabel}: {workload.tz1Count}
-            </span>
-            <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#cbe1f2] text-[#1c3c5d]">
-              {settings.secondaryLabel}: {workload.tz2Count}
-            </span>
+
           </div>
 
           {/* Tab Navigation */}

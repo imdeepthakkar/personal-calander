@@ -64,9 +64,7 @@ export const BottomAlertBar: React.FC<BottomAlertBarProps> = ({
             <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-700">
               Impending ICRB & Key Deliverables Window (Next 96 Hours)
             </h3>
-            <span className="text-[11px] text-zinc-500">
-              Showing active commitments across {settings.primaryLabel} and {settings.secondaryLabel}
-            </span>
+
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5">
@@ -104,7 +102,7 @@ export const BottomAlertBar: React.FC<BottomAlertBarProps> = ({
                   <div className="flex items-center justify-between mt-2 pt-1 border-t border-amber-200/60 text-[10px] text-zinc-600">
                     <span className="flex items-center gap-1 font-mono">
                       <Clock className="w-3 h-3" />
-                      {dual.dualLabel}
+                      {dual.time1}
                     </span>
                     {item.meetingUrl && (
                       <a

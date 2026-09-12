@@ -23,15 +23,7 @@ export const TimelineView: React.FC<TimelineViewProps> = ({
 
   return (
     <div className="flex flex-col gap-3">
-      {/* Timezone Comparison Bar */}
-      <div className="flex items-center justify-between px-3 py-1.5 rounded-md bg-[#e4e4db] text-[11px] font-bold text-zinc-700">
-        <span>Timeline Synchronized:</span>
-        <div className="flex items-center gap-2">
-          <span className="text-[#195115] font-semibold">{settings.primaryLabel} ({settings.primaryTimezone.split('/')[1]})</span>
-          <span>⇄</span>
-          <span className="text-[#193a60] font-semibold">{settings.secondaryLabel} ({settings.secondaryTimezone.split('/')[1]})</span>
-        </div>
-      </div>
+
 
       {sortedEvents.length === 0 ? (
         <div className="text-center py-8 text-xs text-zinc-400">
@@ -97,11 +89,8 @@ export const TimelineView: React.FC<TimelineViewProps> = ({
                 {/* Times & Video Link */}
                 <div className="flex flex-wrap items-center justify-between gap-2 mt-3 pt-2 border-t border-zinc-100 text-[11px]">
                   <div className="flex flex-col text-zinc-600 font-mono text-[10px]">
-                    <span className="font-semibold text-emerald-800">
-                      {settings.primaryLabel}: {startDual.time1} - {endDual.time1}
-                    </span>
-                    <span className="text-sky-800">
-                      {settings.secondaryLabel}: {startDual.time2} - {endDual.time2}
+                    <span className="font-semibold text-zinc-700">
+                      {startDual.time1} - {endDual.time1}
                     </span>
                   </div>
 

@@ -333,10 +333,10 @@ export default function CalendarHome() {
             <div className="flex items-center justify-between mb-6 pb-3 border-b border-zinc-300">
               <div>
                 <h2 className="text-xl font-bold text-zinc-900">
-                  Week Timeline & Dual-Timezone Synchronizer
+                  Week Timeline
                 </h2>
                 <p className="text-xs text-zinc-600">
-                  Side-by-side hourly commitments across {settings.primaryLabel} and {settings.secondaryLabel}
+                  Daily commitments and scheduled events
                 </p>
               </div>
               <button
