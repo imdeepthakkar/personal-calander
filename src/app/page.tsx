@@ -334,7 +334,7 @@ export default function CalendarHome() {
 
         {/* View 2: Week Dual-Timeline View */}
         {currentView === 'week' && (
-          <div className="p-6 max-w-6xl mx-auto w-full relative z-10">
+          <div className="p-6 max-w-5xl mx-auto w-full relative z-10">
             <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-8">
               <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/50">
                 <div>
@@ -409,7 +409,7 @@ export default function CalendarHome() {
 
         {/* View 3: All Tasks & To-Do Board */}
         {currentView === 'todos' && (
-          <div className="p-6 max-w-6xl mx-auto w-full relative z-10">
+          <div className="p-6 max-w-5xl mx-auto w-full relative z-10">
             <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-8">
               <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/50">
                 <div>
@@ -572,3 +572,4 @@ export default function CalendarHome() {
     </div>
   );
 }
+
