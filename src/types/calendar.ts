@@ -66,4 +66,5 @@ export interface UserSettings {
   microsoftConnected: boolean;
   icalFeeds: ICalFeed[];
   useDemoData: boolean;
+  aiApiKey?: string;
 }

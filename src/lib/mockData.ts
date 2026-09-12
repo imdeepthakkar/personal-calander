@@ -12,6 +12,7 @@ export const DEFAULT_SETTINGS: UserSettings = {
   microsoftConnected: false,
   icalFeeds: [],
   useDemoData: false,
+  aiApiKey: "",
 };
 
 // Daily target distribution matching the screenshot exactly for September 2026
