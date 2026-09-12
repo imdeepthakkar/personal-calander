@@ -433,12 +433,20 @@ export default function CalendarHome() {
                     Consolidated action items across all synced accounts
                   </p>
                 </div>
-                <button
-                  onClick={() => setCurrentView('matrix')}
-                  className="px-4 py-2 rounded-2xl bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-sm font-bold text-clay-foreground transition-all"
-                >
-                  Back to Matrix View
-                </button>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setIsNewTaskModalOpen(true)}
+                    className="px-6 py-3 rounded-2xl bg-gradient-to-br from-[#A78BFA] to-clay-accent shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 text-sm font-black text-white transition-all flex items-center gap-2 tracking-wide"
+                  >
+                    <Plus className="w-4 h-4" /> Add Task
+                  </button>
+                  <button
+                    onClick={() => setCurrentView('matrix')}
+                    className="px-6 py-3 rounded-2xl bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-sm font-black text-clay-foreground transition-all tracking-wide"
+                  >
+                    Matrix View
+                  </button>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
