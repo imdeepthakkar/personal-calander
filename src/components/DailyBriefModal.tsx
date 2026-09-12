@@ -64,7 +64,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
         const prompt = `Act as a highly intelligent, concise personal assistant. Summarize my day for ${displayDate.toLocaleDateString()}. Make it conversational but highly professional and extremely brief (max 3 sentences).\n\nMeetings:\n${eventsStr || 'None'}\n\nCritical Tasks:\n${todosStr || 'None'}`;
 
         const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${settings.aiApiKey}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${settings.aiApiKey}`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
