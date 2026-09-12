@@ -21,19 +21,21 @@ export const DayCell: React.FC<DayCellProps> = ({
   // Background tint calculation based on screenshot heat levels
   const getBackgroundColor = () => {
     if (!isCurrentMonth) {
-      return 'bg-[#f4f4ec]/40 opacity-40';
+      return 'bg-clay-canvas/20 opacity-40';
+    }
+    if (isHighlighted) {
+      return 'bg-white';
     }
     if (totalCount === 0) {
-      return 'bg-[#ecece5]/60 hover:bg-[#ecece5]';
+      return 'bg-[#EFEBF5]/50';
     }
     if (totalCount <= 5) {
-      return 'bg-[#dbeef0]/70 hover:bg-[#d5ecee]'; // soft mint-blue
+      return 'bg-blue-100/70';
     }
     if (totalCount <= 12) {
-      return 'bg-[#f6ebd4] hover:bg-[#f3e5c7]'; // warm wheat / amber
+      return 'bg-amber-100/70';
     }
-    // High workload (e.g. 17 on Sep 9)
-    return 'bg-[#fcdcdc] hover:bg-[#fad3d3]'; // soft blush / rose
+    return 'bg-rose-100/70';
   };
 
   const isHighlighted = isSelected || isToday;
@@ -50,30 +52,35 @@ export const DayCell: React.FC<DayCellProps> = ({
         }
       }}
       className={`
-        relative flex flex-col justify-between p-2.5 min-h-[96px] sm:min-h-[110px] md:min-h-[120px] rounded-lg transition-all duration-150 cursor-pointer select-none border
+        relative flex flex-col justify-between p-2.5 min-h-[96px] sm:min-h-[110px] md:min-h-[120px] rounded-[24px] transition-all duration-300 cursor-pointer select-none
         ${getBackgroundColor()}
         ${
           isHighlighted
-            ? 'border-[#2d5aa8] ring-2 ring-[#2d5aa8] shadow-md z-10'
-            : 'border-[#dfdfd5] hover:border-zinc-400 hover:shadow-sm'
+            ? 'shadow-clayButton scale-105 z-10 border-2 border-clay-accent'
+            : 'border-2 border-transparent hover:bg-white hover:shadow-clayCard hover:-translate-y-1 hover:scale-[1.02]'
         }
+        active:scale-95 active:shadow-clayPressed
       `}
     >
       {/* Top right: Event Count Badge */}
       {isCurrentMonth && totalCount > 0 && (
-        <div className="absolute top-1.5 right-1.5">
-          <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 bg-[#2c2c2c] text-white text-[10px] font-bold rounded-full shadow-sm">
+        <div className="absolute top-2 right-2">
+          <span 
+            className="flex items-center justify-center min-w-[22px] h-[22px] px-1 bg-gradient-to-br from-[#A78BFA] to-clay-accent text-white text-[11px] font-black rounded-full shadow-clayButton"
+            style={{ fontFamily: 'var(--font-nunito)' }}
+          >
             {totalCount}
           </span>
         </div>
       )}
 
       {/* Center: Large Day Number */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center pointer-events-none">
         <span
-          className={`text-2xl sm:text-3xl font-bold tracking-tight ${
-            isCurrentMonth ? 'text-zinc-900' : 'text-zinc-400'
+          className={`text-3xl sm:text-4xl font-black tracking-tighter ${
+            isCurrentMonth ? 'text-clay-foreground' : 'text-clay-muted/40'
           }`}
+          style={{ fontFamily: 'var(--font-nunito)' }}
         >
           {dayNumber}
         </span>

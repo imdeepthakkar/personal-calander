@@ -334,25 +334,29 @@ export default function CalendarHome() {
 
         {/* View 2: Week Dual-Timeline View */}
         {currentView === 'week' && (
-          <div className="p-6 max-w-6xl mx-auto w-full">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-zinc-300">
-              <div>
-                <h2 className="text-xl font-bold text-zinc-900">
-                  Week Timeline
-                </h2>
-                <p className="text-xs text-zinc-600">
-                  Daily commitments and scheduled events
-                </p>
+          <div className="p-6 max-w-6xl mx-auto w-full relative z-10">
+            <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-8">
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/50">
+                <div>
+                  <h2 
+                    className="text-3xl font-black text-clay-foreground"
+                    style={{ fontFamily: 'var(--font-nunito)' }}
+                  >
+                    Week Timeline
+                  </h2>
+                  <p className="text-sm font-medium text-clay-muted mt-1">
+                    Daily commitments and scheduled events
+                  </p>
+                </div>
+                <button
+                  onClick={() => setCurrentView('matrix')}
+                  className="px-4 py-2 rounded-2xl bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-sm font-bold text-clay-foreground transition-all"
+                >
+                  Back to Matrix View
+                </button>
               </div>
-              <button
-                onClick={() => setCurrentView('matrix')}
-                className="px-3 py-1.5 rounded-lg border border-zinc-300 bg-white text-xs font-semibold hover:bg-zinc-100"
-              >
-                Back to Matrix View
-              </button>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-7 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
               {monthDays
                 .filter((d) => d.isCurrentMonth && d.dayNumber >= 6 && d.dayNumber <= 12)
                 .map((day) => (
@@ -400,29 +404,36 @@ export default function CalendarHome() {
                 ))}
             </div>
           </div>
+          </div>
         )}
 
         {/* View 3: All Tasks & To-Do Board */}
         {currentView === 'todos' && (
-          <div className="p-6 max-w-5xl mx-auto w-full">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-zinc-300">
-              <div>
-                <h2 className="text-xl font-bold text-zinc-900">Personal & Work To-Do Master Hub</h2>
-                <p className="text-xs text-zinc-600">
-                  Consolidated action items synced from Google Tasks, Microsoft To-Do, and local storage
-                </p>
+          <div className="p-6 max-w-6xl mx-auto w-full relative z-10">
+            <div className="bg-white/60 backdrop-blur-xl shadow-clayCard border border-white/40 rounded-[48px] p-8">
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/50">
+                <div>
+                  <h2 
+                    className="text-3xl font-black text-clay-foreground"
+                    style={{ fontFamily: 'var(--font-nunito)' }}
+                  >
+                    To-Do Master Hub
+                  </h2>
+                  <p className="text-sm font-medium text-clay-muted mt-1">
+                    Consolidated action items across all synced accounts
+                  </p>
+                </div>
+                <button
+                  onClick={() => setCurrentView('matrix')}
+                  className="px-4 py-2 rounded-2xl bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-sm font-bold text-clay-foreground transition-all"
+                >
+                  Back to Matrix View
+                </button>
               </div>
-              <button
-                onClick={() => setCurrentView('matrix')}
-                className="px-3 py-1.5 rounded-lg border border-zinc-300 bg-white text-xs font-semibold hover:bg-zinc-100"
-              >
-                Back to Matrix View
-              </button>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Pending */}
-              <div className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Pending */}
+                <div className="bg-[#EFEBF5]/50 p-6 rounded-[32px] border border-white/50 shadow-clayPressed">
                 <h3 className="font-bold text-xs uppercase tracking-wider text-zinc-700 mb-3 flex items-center justify-between">
                   <span>Pending Tasks ({todos.filter((t) => !t.completed).length})</span>
                 </h3>
