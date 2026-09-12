@@ -274,11 +274,14 @@ export default function CalendarHome() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-[#f5f5ee]">
+      <div className="flex items-center justify-center min-h-screen bg-clay-canvas">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-3 border-[#5b1938] border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs font-semibold text-zinc-600 tracking-wider">
-            Loading Personal Calendar...
+          <div className="w-10 h-10 border-4 border-clay-accent border-t-transparent rounded-full animate-spin" />
+          <span 
+            className="text-sm font-black text-clay-foreground tracking-widest uppercase"
+            style={{ fontFamily: 'var(--font-nunito)' }}
+          >
+            Loading Calendar
           </span>
         </div>
       </div>
@@ -286,7 +289,13 @@ export default function CalendarHome() {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#f5f5ee] text-zinc-800">
+    <div className="flex min-h-screen bg-clay-canvas text-clay-foreground relative overflow-hidden z-0">
+      {/* Animated 3D Floating Blobs Background */}
+      <div className="pointer-events-none fixed inset-0 overflow-hidden -z-10">
+        <div className="absolute h-[60vh] w-[60vh] rounded-full bg-[#8B5CF6]/15 blur-3xl -top-[10%] -left-[10%] animate-clay-float" />
+        <div className="absolute h-[50vh] w-[50vh] rounded-full bg-[#EC4899]/10 blur-3xl right-[10%] top-[20%] animate-clay-float-delayed" />
+        <div className="absolute h-[70vh] w-[70vh] rounded-full bg-[#0EA5E9]/15 blur-3xl -bottom-[10%] left-[20%] animate-clay-float-slow" />
+      </div>
       {/* Left Navigation Ribbon */}
       <Sidebar
         currentView={currentView}

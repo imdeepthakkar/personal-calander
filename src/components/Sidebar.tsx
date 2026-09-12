@@ -54,14 +54,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <aside className="w-14 sm:w-16 bg-[#e8e8df] border-r border-[#d8d8ce] flex flex-col items-center pt-4 pb-8 justify-between h-[100dvh] sticky top-0 z-20 select-none overflow-y-auto no-scrollbar">
+    <aside className="w-16 sm:w-20 m-4 bg-white/70 shadow-clayCard backdrop-blur-xl border border-white/40 flex flex-col items-center py-6 justify-between h-[calc(100dvh-32px)] rounded-[32px] sticky top-4 z-20 select-none overflow-y-auto no-scrollbar transition-all duration-300">
       {/* Top Section: App Badge & Quick Create */}
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-6">
         {/* Brand Icon */}
         <div
           onClick={() => onViewChange('matrix')}
-          className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#691864] to-[#261c6a] flex items-center justify-center text-white font-black text-sm shadow-md cursor-pointer hover:opacity-90 transition-transform active:scale-95"
+          className="w-12 h-12 rounded-[20px] bg-gradient-to-br from-pink-400 to-purple-600 flex items-center justify-center text-white font-black text-xl shadow-clayButton cursor-pointer hover:shadow-clayButtonHover hover:-translate-y-1 transition-all active:scale-[0.92] active:shadow-clayPressed"
           title="Personal Calendar"
+          style={{ fontFamily: 'var(--font-nunito)' }}
         >
           H
         </div>
@@ -69,17 +70,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Quick Add Event / Task Button */}
         <button
           onClick={onOpenNewEvent}
-          className="w-10 h-10 rounded-xl bg-[#2563eb] text-white flex items-center justify-center shadow hover:bg-blue-700 transition-colors"
+          className="w-12 h-12 rounded-[20px] bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white flex items-center justify-center shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed transition-all"
           title="Create New Event or Task"
         >
-          <PlusCircle className="w-5 h-5" />
+          <PlusCircle className="w-6 h-6" />
         </button>
 
         {/* Divider */}
-        <div className="w-8 h-[1px] bg-[#d0d0c4] my-1" />
+        <div className="w-10 h-[2px] bg-clay-muted/10 rounded-full" />
 
         {/* Navigation Views */}
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-center gap-3">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentView === item.id;
@@ -87,10 +88,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <button
                 key={item.id}
                 onClick={item.action}
-                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all ${
+                className={`w-12 h-12 rounded-[20px] flex items-center justify-center transition-all duration-200 ${
                   isActive
-                    ? 'bg-[#ffffff] text-zinc-900 shadow-sm border border-zinc-300'
-                    : 'text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900'
+                    ? 'bg-[#EFEBF5] text-clay-accent shadow-clayPressed'
+                    : 'text-clay-muted hover:bg-white/80 hover:text-clay-foreground hover:-translate-y-1 shadow-sm'
                 }`}
                 title={item.label}
               >
@@ -101,20 +102,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Divider */}
-        <div className="w-8 h-px bg-zinc-300 my-2" />
+        <div className="w-10 h-[2px] bg-clay-muted/10 rounded-full my-1" />
 
         {/* Sync & Settings */}
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-center gap-3">
           <button
             onClick={onOpenSync}
-            className="w-10 h-10 rounded-lg text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900 flex items-center justify-center transition-colors shrink-0"
+            className="w-12 h-12 rounded-[20px] text-clay-muted hover:bg-white/80 hover:text-clay-foreground flex items-center justify-center transition-all duration-200 hover:-translate-y-1 shadow-sm shrink-0"
             title="Sync Calendars"
           >
             <RefreshCw className="w-5 h-5" />
           </button>
           <button
             onClick={onOpenSettings}
-            className="w-10 h-10 rounded-lg text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900 flex items-center justify-center transition-colors shrink-0"
+            className="w-12 h-12 rounded-[20px] text-clay-muted hover:bg-white/80 hover:text-clay-foreground flex items-center justify-center transition-all duration-200 hover:-translate-y-1 shadow-sm shrink-0"
             title="Settings"
           >
             <Settings className="w-5 h-5" />

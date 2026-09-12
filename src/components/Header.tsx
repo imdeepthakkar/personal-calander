@@ -31,45 +31,51 @@ export const Header: React.FC<HeaderProps> = ({
   }).format(currentDate);
 
   return (
-    <header className="flex flex-col items-center justify-center pt-5 pb-3 px-4 w-full">
+    <header className="flex flex-col items-center justify-center pt-8 pb-4 px-4 w-full">
       {/* Title */}
-      <h1 className="text-2xl font-bold tracking-widest text-zinc-800 uppercase mb-3 select-none">
+      <h1 
+        className="text-4xl font-black tracking-tight text-clay-foreground uppercase mb-4 select-none"
+        style={{ fontFamily: 'var(--font-nunito)' }}
+      >
         {settings.boardTitle || 'PERSONAL CALENDAR'}
       </h1>
 
       {/* Metric Summary Gradient Badges */}
-      <div className="flex flex-wrap items-center justify-center gap-3 mb-2">
+      <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
         {/* Total Pill */}
-        <div className="inline-flex items-center justify-center px-6 py-1.5 rounded-full text-white font-bold text-sm shadow-md bg-gradient-to-r from-[#7a1236] via-[#941344] to-[#6d1033] tracking-wide cursor-default transition-transform hover:scale-105">
-          <span>TOTAL: {totalCount}</span>
+        <div className="inline-flex items-center justify-center px-6 py-2 rounded-full text-white font-bold text-sm bg-gradient-to-br from-[#A78BFA] to-clay-accent shadow-clayButton cursor-default transition-all duration-300 hover:shadow-clayButtonHover hover:-translate-y-1">
+          <span className="tracking-wide">TOTAL: {totalCount}</span>
         </div>
       </div>
 
       {/* Month Subtitle & Quick Navigation */}
-      <div className="flex items-center justify-center gap-2 mt-1">
+      <div className="flex items-center justify-center gap-4 mt-2">
         <button
           onClick={onPrevMonth}
-          className="p-1 rounded-full text-zinc-500 hover:text-zinc-800 hover:bg-zinc-200/60 transition-colors"
+          className="p-2.5 rounded-[16px] text-clay-foreground bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed transition-all"
           title="Previous Month"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
 
-        <span className="text-xs font-semibold text-zinc-700 tracking-tight min-w-[130px] text-center">
+        <span 
+          className="text-2xl font-bold text-clay-foreground tracking-tight min-w-[200px] text-center"
+          style={{ fontFamily: 'var(--font-nunito)' }}
+        >
           {monthYearString}
         </span>
 
         <button
           onClick={onNextMonth}
-          className="p-1 rounded-full text-zinc-500 hover:text-zinc-800 hover:bg-zinc-200/60 transition-colors"
+          className="p-2.5 rounded-[16px] text-clay-foreground bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed transition-all"
           title="Next Month"
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-5 h-5" />
         </button>
 
         <button
           onClick={onToday}
-          className="px-2.5 py-1 rounded-full text-[11px] font-bold text-zinc-600 bg-zinc-200/50 hover:text-zinc-900 hover:bg-zinc-200 transition-colors ml-2"
+          className="px-4 py-2.5 rounded-[16px] text-sm font-bold text-clay-foreground bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed transition-all ml-2"
           title="Jump to Today"
         >
           TODAY
