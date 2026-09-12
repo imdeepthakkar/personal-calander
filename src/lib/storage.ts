@@ -1,6 +1,6 @@
 import { get, set } from 'idb-keyval';
 import { CalendarEvent, ToDoItem, UserSettings } from '@/types/calendar';
-import { DEFAULT_SETTINGS, generateSeptember2026Data } from './mockData';
+import { DEFAULT_SETTINGS } from './mockData';
 
 const SETTINGS_KEY = 'personal_cal_settings_v1';
 const EVENTS_KEY = 'personal_cal_events_v1';
@@ -35,10 +35,7 @@ export async function loadEvents(): Promise<CalendarEvent[]> {
   } catch (err) {
     console.warn('Could not read events from IndexedDB', err);
   }
-  // Initialize with realistic mock data
-  const { events } = generateSeptember2026Data();
-  await saveEvents(events);
-  return events;
+  return [];
 }
 
 export async function saveEvents(events: CalendarEvent[]): Promise<void> {
@@ -59,10 +56,7 @@ export async function loadTodos(): Promise<ToDoItem[]> {
   } catch (err) {
     console.warn('Could not read todos from IndexedDB', err);
   }
-  // Initialize with realistic mock data
-  const { todos } = generateSeptember2026Data();
-  await saveTodos(todos);
-  return todos;
+  return [];
 }
 
 export async function saveTodos(todos: ToDoItem[]): Promise<void> {

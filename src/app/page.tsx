@@ -24,13 +24,12 @@ import {
   loadUserSettings,
   saveUserSettings,
 } from '@/lib/storage';
-import { DEFAULT_SETTINGS, generateSeptember2026Data } from '@/lib/mockData';
+import { DEFAULT_SETTINGS } from '@/lib/mockData';
 import { CheckCircle2, Circle, Clock, Trash2, Video, Plus } from 'lucide-react';
 import { formatDualTime } from '@/lib/timezones';
 
 export default function CalendarHome() {
-  // Reference date starts at September 2026 to reproduce the screenshot 1:1
-  const [currentDate, setCurrentDate] = useState<Date>(new Date(2026, 8, 11));
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [todos, setTodos] = useState<ToDoItem[]>([]);
   const [settings, setSettings] = useState<UserSettings>(DEFAULT_SETTINGS);
@@ -38,7 +37,10 @@ export default function CalendarHome() {
 
   // View state
   const [currentView, setCurrentView] = useState<AppView>('matrix');
-  const [selectedDateKey, setSelectedDateKey] = useState<string>('2026-09-11');
+  const [selectedDateKey, setSelectedDateKey] = useState<string>(() => {
+    const today = new Date();
+    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  });
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const [syncModalOpen, setSyncModalOpen] = useState<boolean>(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
@@ -140,9 +142,7 @@ export default function CalendarHome() {
       else if (dayTotal > 5 && dayTotal <= 12) heatLevel = 'medium';
       else if (dayTotal > 12) heatLevel = 'high';
 
-      const isToday =
-        d === 11 && month === 8 && year === 2026 // highlight Day 11 as shown in screenshot
-        || (new Date().toDateString() === date.toDateString());
+      const isToday = new Date().toDateString() === date.toDateString();
 
       days.push({
         date,
@@ -205,8 +205,9 @@ export default function CalendarHome() {
   };
 
   const handleToday = () => {
-    setCurrentDate(new Date(2026, 8, 11)); // Jump to reference date (or new Date())
-    setSelectedDateKey('2026-09-11');
+    const today = new Date();
+    setCurrentDate(new Date(today.getFullYear(), today.getMonth(), 1));
+    setSelectedDateKey(`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`);
   };
 
   const handleSelectDay = (workload: DayWorkload) => {
@@ -266,15 +267,6 @@ export default function CalendarHome() {
     await saveEvents(merged);
   };
 
-  const handleResetToDemoData = async () => {
-    const { events: demoEvents, todos: demoTodos } = generateSeptember2026Data();
-    setEvents(demoEvents);
-    setTodos(demoTodos);
-    setCurrentDate(new Date(2026, 8, 11));
-    setSelectedDateKey('2026-09-11');
-    await saveEvents(demoEvents);
-    await saveTodos(demoTodos);
-  };
 
   if (isLoading) {
     return (
@@ -543,7 +535,6 @@ export default function CalendarHome() {
         onClose={() => setSyncModalOpen(false)}
         onUpdateSettings={handleUpdateSettings}
         onImportICalEvents={handleImportICalEvents}
-        onResetToDemoData={handleResetToDemoData}
       />
 
       {/* Settings Modal */}

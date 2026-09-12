@@ -20,7 +20,6 @@ interface SyncModalProps {
   onClose: () => void;
   onUpdateSettings: (newSettings: UserSettings) => void;
   onImportICalEvents: (feed: ICalFeed, events: CalendarEvent[]) => void;
-  onResetToDemoData: () => void;
 }
 
 export const SyncModal: React.FC<SyncModalProps> = ({
@@ -29,7 +28,6 @@ export const SyncModal: React.FC<SyncModalProps> = ({
   onClose,
   onUpdateSettings,
   onImportICalEvents,
-  onResetToDemoData,
 }) => {
   const [feedName, setFeedName] = useState('');
   const [feedUrl, setFeedUrl] = useState('');
@@ -264,26 +262,6 @@ export const SyncModal: React.FC<SyncModalProps> = ({
                 </button>
               </div>
             </div>
-          </div>
-
-          {/* Section 3: Reset to Screenshot Demo Dataset */}
-          <div className="p-3.5 rounded-xl border border-[#dedecf] bg-[#f4f4ec] flex items-center justify-between">
-            <div>
-              <h5 className="font-bold text-zinc-800">Screenshot Demo Dataset (Sept 2026)</h5>
-              <p className="text-[11px] text-zinc-600">
-                Restore the exact 115 total items matching your photo.
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => {
-                onResetToDemoData();
-                onClose();
-              }}
-              className="px-3 py-1.5 rounded-lg bg-[#5b1938] hover:bg-[#431329] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs shrink-0"
-            >
-              <RotateCcw className="w-3.5 h-3.5" /> Restore Mock Data
-            </button>
           </div>
         </div>
 
