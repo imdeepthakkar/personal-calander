@@ -9,7 +9,22 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        "dm-sans": ["var(--font-dm-sans)", "sans-serif"],
+        "nunito": ["var(--font-nunito)", "sans-serif"],
+      },
       colors: {
+        clay: {
+          canvas: "#F4F1FA",
+          cardBg: "rgba(255, 255, 255, 0.7)", // Used with backdrop-blur
+          foreground: "#332F3A",
+          muted: "#635F69",
+          accent: "#7C3AED",
+          accentAlt: "#DB2777",
+          sky: "#0EA5E9",
+          success: "#10B981",
+          warning: "#F59E0B",
+        },
         matrix: {
           bg: "#f3f3eb",
           cardBg: "#f8f8f2",

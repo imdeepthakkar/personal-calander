@@ -1,5 +1,18 @@
 import type { Metadata, Viewport } from "next";
+import { Nunito, DM_Sans } from "next/font/google";
 import "./globals.css";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
+  variable: "--font-nunito",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-dm-sans",
+});
 
 export const metadata: Metadata = {
   title: "Personal Calendar | Multi-Timezone Workload Planner",
@@ -11,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#5b1938",
+  themeColor: "#7C3AED",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -23,14 +36,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${nunito.variable} ${dmSans.variable}`}>
       <head>
         <link rel="manifest" href="/personal-calendar/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Personal Calendar" />
       </head>
-      <body className="antialiased select-none bg-[#f5f5ee] text-slate-800 min-h-screen">
+      <body className="font-dm-sans antialiased select-none bg-clay-canvas text-clay-foreground min-h-screen">
         {children}
       </body>
     </html>
