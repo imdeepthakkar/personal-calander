@@ -52,7 +52,7 @@ export const DayCell: React.FC<DayCellProps> = ({
         }
       }}
       className={`
-        relative flex flex-col justify-between p-2.5 min-h-[96px] sm:min-h-[110px] md:min-h-[120px] rounded-[24px] transition-all duration-300 cursor-pointer select-none
+        relative flex flex-col justify-between p-2.5 min-h-[72px] sm:min-h-[84px] md:min-h-[96px] rounded-[24px] transition-all duration-300 cursor-pointer select-none
         ${getBackgroundColor()}
         ${
           isHighlighted
@@ -88,3 +88,4 @@ export const DayCell: React.FC<DayCellProps> = ({
     </div>
   );
 };
+
