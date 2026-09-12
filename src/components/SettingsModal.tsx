@@ -56,50 +56,51 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden border border-zinc-200 animate-in fade-in zoom-in-95 duration-150">
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 bg-[#f4f4ec] border-b border-[#e0e0d6]">
-          <div className="flex items-center gap-2">
-            <Settings className="w-4 h-4 text-zinc-700" />
-            <h3 className="text-sm font-bold text-zinc-800">
+    <div className="fixed inset-0 z-50 bg-clay-foreground/10 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white/70 backdrop-blur-xl rounded-[48px] shadow-clayCard max-w-lg w-full overflow-hidden border border-white/40 animate-in fade-in zoom-in-95 duration-300">
+        <div className="flex items-center justify-between px-8 py-6 border-b border-white/40 bg-white/40">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-full bg-[#EFEBF5] shadow-clayPressed text-clay-accent">
+              <Settings className="w-5 h-5" />
+            </div>
+            <h3 
+              className="text-xl font-black text-clay-foreground"
+              style={{ fontFamily: 'var(--font-nunito)' }}
+            >
               Board Configuration
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="text-zinc-500 hover:text-zinc-800 p-1 rounded-md transition-colors"
+            className="p-2 rounded-full bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-clay-muted hover:text-clay-foreground transition-all"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSave} className="p-5 flex flex-col gap-4 text-xs">
-          {/* Board Title */}
+        <form onSubmit={handleSave} className="p-8 flex flex-col gap-6 text-sm bg-white/40">
           <div>
-            <label className="block text-[11px] font-semibold text-zinc-700 mb-1 flex items-center gap-1">
-              <Type className="w-3.5 h-3.5" /> Dashboard Board Title
+            <label className="block text-xs font-black text-clay-muted uppercase tracking-wider mb-2 flex items-center gap-2">
+              <Type className="w-4 h-4" /> Dashboard Board Title
             </label>
             <input
               type="text"
               required
               value={boardTitle}
               onChange={(e) => setBoardTitle(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-zinc-300 focus:ring-2 focus:ring-blue-500 text-zinc-800 uppercase font-bold"
+              className="w-full px-5 py-4 rounded-2xl bg-[#EFEBF5] border-none focus:ring-4 focus:ring-clay-accent/20 focus:bg-white text-clay-foreground uppercase font-black text-lg shadow-clayPressed transition-all"
             />
           </div>
 
-          {/* Primary Timezone */}
-          <div className="p-3 bg-[#f8f8f2] rounded-lg border border-zinc-200">
-            <label className="block text-[11px] font-semibold text-emerald-800 mb-1 flex items-center gap-1">
-              <Globe className="w-3.5 h-3.5" /> Primary Timezone (Left Pill & Green Badge)
+          <div className="p-6 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+            <label className="block text-xs font-black text-clay-success uppercase tracking-wider mb-3 flex items-center gap-2">
+              <Globe className="w-4 h-4" /> Primary Timezone (Left Pill & Green Badge)
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-3">
               <select
                 value={primaryTimezone}
                 onChange={(e) => handlePrimaryChange(e.target.value)}
-                className="col-span-2 px-3 py-1.5 rounded border border-zinc-300 bg-white text-zinc-800 text-xs"
+                className="col-span-2 px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground text-sm font-bold shadow-clayPressed focus:ring-4 focus:ring-clay-success/20 focus:bg-white transition-all"
               >
                 {POPULAR_TIMEZONES.map((tz) => (
                   <option key={tz.value} value={tz.value}>
@@ -112,21 +113,20 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 placeholder="Label"
                 value={primaryLabel}
                 onChange={(e) => setPrimaryLabel(e.target.value)}
-                className="px-2 py-1.5 rounded border border-zinc-300 bg-white text-zinc-800 font-bold uppercase text-center"
+                className="px-3 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground font-black uppercase text-center shadow-clayPressed focus:ring-4 focus:ring-clay-success/20 focus:bg-white transition-all"
               />
             </div>
           </div>
 
-          {/* Secondary Timezone */}
-          <div className="p-3 bg-[#f8f8f2] rounded-lg border border-zinc-200">
-            <label className="block text-[11px] font-semibold text-sky-800 mb-1 flex items-center gap-1">
-              <Globe className="w-3.5 h-3.5" /> Secondary Timezone (Right Pill & Blue Badge)
+          <div className="p-6 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+            <label className="block text-xs font-black text-clay-sky uppercase tracking-wider mb-3 flex items-center gap-2">
+              <Globe className="w-4 h-4" /> Secondary Timezone (Right Pill & Blue Badge)
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-3">
               <select
                 value={secondaryTimezone}
                 onChange={(e) => handleSecondaryChange(e.target.value)}
-                className="col-span-2 px-3 py-1.5 rounded border border-zinc-300 bg-white text-zinc-800 text-xs"
+                className="col-span-2 px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground text-sm font-bold shadow-clayPressed focus:ring-4 focus:ring-clay-sky/20 focus:bg-white transition-all"
               >
                 {POPULAR_TIMEZONES.map((tz) => (
                   <option key={tz.value} value={tz.value}>
@@ -139,56 +139,48 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 placeholder="Label"
                 value={secondaryLabel}
                 onChange={(e) => setSecondaryLabel(e.target.value)}
-                className="px-2 py-1.5 rounded border border-zinc-300 bg-white text-zinc-800 font-bold uppercase text-center"
+                className="px-3 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground font-black uppercase text-center shadow-clayPressed focus:ring-4 focus:ring-clay-sky/20 focus:bg-white transition-all"
               />
             </div>
           </div>
 
-          {/* Working Hours */}
-          <div className="p-3 bg-[#f8f8f2] rounded-lg border border-zinc-200">
-            <label className="block text-[11px] font-semibold text-zinc-700 mb-1 flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5" /> Core Working Hours Window
+          <div className="p-6 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+            <label className="block text-xs font-black text-clay-muted uppercase tracking-wider mb-3 flex items-center gap-2">
+              <Clock className="w-4 h-4" /> Core Working Hours Window
             </label>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
-                <span className="text-[10px] text-zinc-500">Start (Hour)</span>
+                <span className="text-xs font-bold text-clay-muted mb-2 block">Start (Hour)</span>
                 <input
                   type="number"
                   min={0}
                   max={23}
                   value={workingHoursStart}
                   onChange={(e) => setWorkingHoursStart(Number(e.target.value))}
-                  className="w-full px-3 py-1.5 rounded border border-zinc-300 bg-white text-zinc-800"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground text-lg font-black text-center shadow-clayPressed focus:ring-4 focus:ring-clay-accent/20 focus:bg-white transition-all"
                 />
               </div>
               <div>
-                <span className="text-[10px] text-zinc-500">End (Hour)</span>
+                <span className="text-xs font-bold text-clay-muted mb-2 block">End (Hour)</span>
                 <input
                   type="number"
                   min={0}
                   max={23}
                   value={workingHoursEnd}
                   onChange={(e) => setWorkingHoursEnd(Number(e.target.value))}
-                  className="w-full px-3 py-1.5 rounded border border-zinc-300 bg-white text-zinc-800"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#EFEBF5] border-none text-clay-foreground text-lg font-black text-center shadow-clayPressed focus:ring-4 focus:ring-clay-accent/20 focus:bg-white transition-all"
                 />
               </div>
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-2 pt-2 border-t border-zinc-100">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 rounded-lg border border-zinc-300 text-zinc-700 font-semibold hover:bg-zinc-100 transition-colors"
-            >
-              Cancel
-            </button>
+          <div className="pt-2">
             <button
               type="submit"
-              className="px-4 py-2 rounded-lg bg-[#2563eb] text-white font-semibold hover:bg-blue-700 shadow-sm transition-colors"
+              className="w-full py-4 rounded-[20px] bg-gradient-to-br from-[#A78BFA] to-clay-accent text-white font-black tracking-widest uppercase shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed transition-all"
+              style={{ fontFamily: 'var(--font-nunito)' }}
             >
-              Save Settings
+              Save Configuration
             </button>
           </div>
         </form>

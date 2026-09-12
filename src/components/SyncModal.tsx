@@ -86,30 +86,35 @@ export const SyncModal: React.FC<SyncModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-xl w-full overflow-hidden border border-zinc-200 animate-in fade-in zoom-in-95 duration-150 flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 bg-clay-foreground/10 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white/70 backdrop-blur-xl rounded-[48px] shadow-clayCard max-w-xl w-full border border-white/40 flex flex-col max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 bg-[#f4f4ec] border-b border-[#e0e0d6]">
-          <div className="flex items-center gap-2">
-            <RefreshCw className="w-4 h-4 text-blue-600" />
-            <h3 className="text-sm font-bold text-zinc-800">
-              Calendar & To-Do Synchronization Hub
+        <div className="flex items-center justify-between px-8 py-6 border-b border-white/40">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-full bg-[#EFEBF5] shadow-clayPressed text-clay-accent">
+              <RefreshCw className="w-5 h-5" />
+            </div>
+            <h3 
+              className="text-xl font-black text-clay-foreground"
+              style={{ fontFamily: 'var(--font-nunito)' }}
+            >
+              Sync Hub
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="text-zinc-500 hover:text-zinc-800 p-1 rounded-md transition-colors"
+            className="p-2 rounded-full bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed text-clay-muted hover:text-clay-foreground transition-all"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content */}
         <div className="p-5 overflow-y-auto flex flex-col gap-5 text-xs">
           {/* Section 1: iCal / WebCal Subscriptions */}
-          <div className="bg-[#fafaf7] p-4 rounded-xl border border-zinc-200">
+          <div className="bg-white/50 rounded-[24px] shadow-sm p-4 rounded-xl border border-white/50">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="font-bold text-zinc-900 flex items-center gap-1.5">
+              <h4 className="font-bold text-clay-foreground flex items-center gap-1.5">
                 <Calendar className="w-4 h-4 text-emerald-600" />
                 Work Calendar Subscriptions (iCal / WebCal)
               </h4>
@@ -117,7 +122,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
                 Direct CORS-Free Proxy
               </span>
             </div>
-            <p className="text-[11px] text-zinc-600 mb-3 leading-relaxed">
+            <p className="text-[11px] text-clay-muted mb-3 leading-relaxed">
               Sync any work calendar by pasting its private ICS link (works with Microsoft
               Outlook webcal URLs, Google Calendar secret address, or Apple iCal).
             </p>
@@ -128,24 +133,24 @@ export const SyncModal: React.FC<SyncModalProps> = ({
                 {settings.icalFeeds.map((feed) => (
                   <div
                     key={feed.id}
-                    className="flex items-center justify-between p-2 rounded bg-white border border-zinc-200"
+                    className="flex items-center justify-between p-2 rounded bg-white border border-white/50"
                   >
                     <div className="flex items-center gap-2 truncate">
                       <span
                         className="w-3 h-3 rounded-full shrink-0"
                         style={{ backgroundColor: feed.color }}
                       />
-                      <span className="font-semibold text-zinc-800 truncate">
+                      <span className="font-semibold text-clay-foreground truncate">
                         {feed.name}
                       </span>
-                      <span className="text-[10px] text-zinc-400 truncate max-w-[150px]">
+                      <span className="text-[10px] text-clay-muted truncate max-w-[150px]">
                         {feed.url}
                       </span>
                     </div>
 
                     <button
                       onClick={() => handleDeleteFeed(feed.id)}
-                      className="text-zinc-400 hover:text-red-500 p-1"
+                      className="text-clay-muted hover:text-red-500 p-1"
                       title="Remove subscription"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -163,7 +168,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
                   placeholder="Feed Name (e.g. Work Outlook)"
                   value={feedName}
                   onChange={(e) => setFeedName(e.target.value)}
-                  className="px-3 py-1.5 rounded border border-zinc-300 bg-white text-zinc-800 text-xs"
+                  className="px-3 py-1.5 rounded border border-white/50 bg-white text-clay-foreground text-xs"
                 />
                 <input
                   type="url"
@@ -171,18 +176,18 @@ export const SyncModal: React.FC<SyncModalProps> = ({
                   placeholder="webcal:// or https://...ics"
                   value={feedUrl}
                   onChange={(e) => setFeedUrl(e.target.value)}
-                  className="sm:col-span-2 px-3 py-1.5 rounded border border-zinc-300 bg-white text-zinc-800 text-xs"
+                  className="sm:col-span-2 px-3 py-1.5 rounded border border-white/50 bg-white text-clay-foreground text-xs"
                 />
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-[11px] text-zinc-600">
+                <div className="flex items-center gap-2 text-[11px] text-clay-muted">
                   <span>Badge Color:</span>
                   <input
                     type="color"
                     value={feedColor}
                     onChange={(e) => setFeedColor(e.target.value)}
-                    className="w-6 h-6 rounded border border-zinc-300 cursor-pointer"
+                    className="w-6 h-6 rounded border border-white/50 cursor-pointer"
                   />
                 </div>
 
@@ -213,18 +218,18 @@ export const SyncModal: React.FC<SyncModalProps> = ({
           {/* Section 2: Google & Microsoft Connected Services */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Google */}
-            <div className="p-3.5 rounded-xl border border-zinc-200 bg-[#fbfbfa] flex flex-col justify-between">
+            <div className="p-3.5 rounded-xl border border-white/50 bg-[#fbfbfa] flex flex-col justify-between">
               <div>
-                <h5 className="font-bold text-zinc-800 flex items-center gap-1.5 mb-1">
+                <h5 className="font-bold text-clay-foreground flex items-center gap-1.5 mb-1">
                   <ShieldCheck className="w-4 h-4 text-blue-600" />
                   Google Calendar & Tasks
                 </h5>
-                <p className="text-[11px] text-zinc-500 leading-snug">
+                <p className="text-[11px] text-clay-muted leading-snug">
                   Direct OAuth2 GIS integration. Events and tasks sync directly into your
                   local IndexedDB storage.
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-zinc-200 flex items-center justify-between">
+              <div className="mt-3 pt-2 border-t border-white/50 flex items-center justify-between">
                 <span className="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
                   <CheckCircle className="w-3 h-3" /> Ready for GIS
                 </span>
@@ -239,17 +244,17 @@ export const SyncModal: React.FC<SyncModalProps> = ({
             </div>
 
             {/* Microsoft 365 */}
-            <div className="p-3.5 rounded-xl border border-zinc-200 bg-[#fbfbfa] flex flex-col justify-between">
+            <div className="p-3.5 rounded-xl border border-white/50 bg-[#fbfbfa] flex flex-col justify-between">
               <div>
-                <h5 className="font-bold text-zinc-800 flex items-center gap-1.5 mb-1">
+                <h5 className="font-bold text-clay-foreground flex items-center gap-1.5 mb-1">
                   <ShieldCheck className="w-4 h-4 text-indigo-600" />
                   Microsoft 365 / To-Do
                 </h5>
-                <p className="text-[11px] text-zinc-500 leading-snug">
+                <p className="text-[11px] text-clay-muted leading-snug">
                   Microsoft Graph MSAL sync for Outlook calendar and Microsoft To-Do.
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-zinc-200 flex items-center justify-between">
+              <div className="mt-3 pt-2 border-t border-white/50 flex items-center justify-between">
                 <span className="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
                   <CheckCircle className="w-3 h-3" /> Ready for MSAL
                 </span>
@@ -278,3 +283,4 @@ export const SyncModal: React.FC<SyncModalProps> = ({
     </div>
   );
 };
+
