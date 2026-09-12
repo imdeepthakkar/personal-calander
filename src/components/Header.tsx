@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RotateCcw, Settings, RefreshCw } from 'lucide-react';
 import { UserSettings } from '@/types/calendar';
 
 interface HeaderProps {
@@ -13,6 +13,8 @@ interface HeaderProps {
   tz1Count: number;
   tz2Count: number;
   settings: UserSettings;
+  onOpenSync: () => void;
+  onOpenSettings: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -24,6 +26,8 @@ export const Header: React.FC<HeaderProps> = ({
   tz1Count,
   tz2Count,
   settings,
+  onOpenSync,
+  onOpenSettings,
 }) => {
   const monthYearString = new Intl.DateTimeFormat('en-US', {
     month: 'long',
@@ -69,10 +73,25 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onToday}
-          className="ml-2 text-[11px] font-medium text-zinc-500 hover:text-zinc-800 hover:underline flex items-center gap-1"
+          className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-800 hover:bg-zinc-200/60 transition-colors ml-1"
           title="Jump to Today"
         >
-          <RotateCcw className="w-3 h-3" /> Today
+          <RotateCcw className="w-4 h-4" />
+        </button>
+        <div className="w-px h-4 bg-zinc-300 mx-1" />
+        <button
+          onClick={onOpenSync}
+          className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-800 hover:bg-zinc-200/60 transition-colors"
+          title="Sync Calendars"
+        >
+          <RefreshCw className="w-4 h-4" />
+        </button>
+        <button
+          onClick={onOpenSettings}
+          className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-800 hover:bg-zinc-200/60 transition-colors"
+          title="Settings"
+        >
+          <Settings className="w-4 h-4" />
         </button>
       </div>
     </header>

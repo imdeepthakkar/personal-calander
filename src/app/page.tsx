@@ -312,6 +312,8 @@ export default function CalendarHome() {
               tz1Count={monthTz1Total}
               tz2Count={monthTz2Total}
               settings={settings}
+              onOpenSync={() => setSyncModalOpen(true)}
+              onOpenSettings={() => setSettingsModalOpen(true)}
             />
 
             <CalendarGrid

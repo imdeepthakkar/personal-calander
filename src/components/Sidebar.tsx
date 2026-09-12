@@ -101,28 +101,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      {/* Bottom Section: Timezones, Sync & Settings */}
-      <div className="flex flex-col items-center gap-3">
-
-
-        {/* Sync Trigger */}
-        <button
-          onClick={onOpenSync}
-          className="w-10 h-10 rounded-lg text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900 flex items-center justify-center transition-colors"
-          title="Sync & Accounts (Google, Outlook, iCal)"
-        >
-          <RefreshCw className="w-4 h-4" />
-        </button>
-
-        {/* Settings Trigger */}
-        <button
-          onClick={onOpenSettings}
-          className="w-10 h-10 rounded-lg text-zinc-600 hover:bg-[#deded4] hover:text-zinc-900 flex items-center justify-center transition-colors"
-          title="Timezone & Board Settings"
-        >
-          <Settings className="w-4 h-4" />
-        </button>
-      </div>
     </aside>
   );
 };
