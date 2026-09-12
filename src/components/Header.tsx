@@ -31,25 +31,19 @@ export const Header: React.FC<HeaderProps> = ({
   }).format(currentDate);
 
   return (
-    <header className="flex flex-col items-center justify-center pt-8 pb-4 px-4 w-full">
+    <header className="flex flex-col items-center justify-center pt-6 pb-2 px-4 w-full">
       {/* Title */}
       <h1 
-        className="text-4xl font-black tracking-tight text-clay-foreground uppercase mb-4 select-none"
+        className="text-4xl font-black tracking-tight text-clay-foreground uppercase mb-2 select-none"
         style={{ fontFamily: 'var(--font-nunito)' }}
       >
         {settings.boardTitle || 'PERSONAL CALENDAR'}
       </h1>
 
-      {/* Metric Summary Gradient Badges */}
-      <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
-        {/* Total Pill */}
-        <div className="inline-flex items-center justify-center px-6 py-2 rounded-full text-white font-bold text-sm bg-gradient-to-br from-[#A78BFA] to-clay-accent shadow-clayButton cursor-default transition-all duration-300 hover:shadow-clayButtonHover hover:-translate-y-1">
-          <span className="tracking-wide">TOTAL: {totalCount}</span>
-        </div>
-      </div>
+
 
       {/* Month Subtitle & Quick Navigation */}
-      <div className="flex items-center justify-center gap-4 mt-2">
+      <div className="flex items-center justify-center gap-4 mt-1 mb-4">
         <button
           onClick={onPrevMonth}
           className="p-2.5 rounded-[16px] text-clay-foreground bg-white shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-95 active:shadow-clayPressed transition-all"
