@@ -52,6 +52,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
       secondaryLabel: secondaryLabel.trim() || 'REMOTE',
       workingHoursStart: Number(workingHoursStart),
       workingHoursEnd: Number(workingHoursEnd),
+      aiApiKey: aiApiKey.trim(),
     });
     onClose();
   };
