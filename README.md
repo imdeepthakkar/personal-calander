@@ -1,15 +1,13 @@
-# HERACLES | Personal Calendar & To-Do PWA
+# Personal Calendar & To-Do Hub
 
 An executive-grade multi-timezone workload calendar and To-Do Progressive Web App (PWA) crafted with Next.js 15, React 19, TypeScript, and Tailwind CSS. Faithfully designed to match the high-density dual-timezone matrix layout shown in the reference screenshot.
-
-Hosted on: **[deepthakkar.vercel.app/personal-calendar](https://deepthakkar.vercel.app/personal-calendar)**
 
 ---
 
 ## Key Features
 
-1. **Screenshot-Accurate Month Matrix**:
-   - **Header Title**: `HERACLES` (Customizable in Settings)
+1. **Accurate Month Matrix**:
+   - **Header Title**: `Personal Calendar` (Customizable in Settings)
    - **Gradient Summary Badges**:
      - `TOTAL: 115` (Burgundy / Ruby gradient `#7a1236`)
      - `IST: 79 | CST: 36` (Deep violet / indigo gradient `#431773`)
@@ -62,12 +60,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000/personal-calendar](http://localhost:3000/personal-calendar) in your browser.
-
----
-
-## Deploy to Vercel (Zero-Config)
-
-This application has been engineered with a zero-database client-first architecture, making it 100% ready for Vercel deployment:
-
-- **Repository**: [https://github.com/imdeepthakkar/personal-calander](https://github.com/imdeepthakkar/personal-calander)
-- **Live Gateway URL**: [https://deepthakkar.vercel.app/personal-calendar](https://deepthakkar.vercel.app/personal-calendar)
