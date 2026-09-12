@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
 
     const res = await fetch(targetUrl, {
       headers: {
-        'User-Agent': 'PersonalCalendar/1.0',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         Accept: 'text/calendar, text/plain, */*',
       },
       next: { revalidate: 300 }, // Cache on edge for 5 mins
