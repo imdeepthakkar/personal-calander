@@ -59,30 +59,27 @@ export const DayCell: React.FC<DayCellProps> = ({
         }
       `}
     >
-      {/* Top row: Day Number in top-right */}
-      <div className="flex justify-end w-full">
+      {/* Center: Large Day Number */}
+      <div className="flex items-center justify-center my-auto">
         <span
-          className={`text-[11px] font-semibold ${
-            isCurrentMonth ? 'text-zinc-500' : 'text-zinc-400'
+          className={`text-2xl sm:text-3xl font-bold tracking-tight ${
+            isCurrentMonth ? 'text-zinc-900' : 'text-zinc-400'
           }`}
         >
           {dayNumber}
         </span>
       </div>
 
-      {/* Center: Large Workload Metric */}
-      <div className="flex items-center justify-center my-auto">
-        <span
-          className={`text-2xl sm:text-3xl font-bold tracking-tight ${
-            totalCount === 0 ? 'text-zinc-600' : 'text-zinc-900'
-          }`}
-        >
-          {isCurrentMonth ? totalCount : ''}
-        </span>
-      </div>
-
-      {/* Optional padding to maintain card height if needed */}
-      <div className="h-4" />
+      {/* Bottom row: Workload Metric */}
+      {isCurrentMonth && totalCount > 0 ? (
+        <div className="flex justify-center w-full">
+          <span className="px-2 py-0.5 bg-black/10 text-zinc-700 text-[10px] font-bold rounded">
+            {totalCount} item{totalCount !== 1 ? 's' : ''}
+          </span>
+        </div>
+      ) : (
+        <div className="h-4" />
+      )}
     </div>
   );
 };
