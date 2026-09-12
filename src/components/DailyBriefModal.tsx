@@ -11,6 +11,7 @@ interface DailyBriefModalProps {
   events: CalendarEvent[];
   todos: ToDoItem[];
   settings: UserSettings;
+  dateKey?: string;
 }
 
 export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
@@ -19,12 +20,15 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
   events,
   todos,
   settings,
+  dateKey,
 }) => {
   if (!isOpen) return null;
 
-  // Use today's date for the brief
-  const todayDate = new Date(2026, 8, 12); // Using the static reference date from page.tsx for consistency
-  const todayString = todayDate.toISOString().split('T')[0];
+
+  const todayString = dateKey || '2026-09-12';
+  const [year, month, day] = todayString.split('-');
+  const displayDate = new Date(Number(year), Number(month) - 1, Number(day));
+
 
   const todaysEvents = events
     .filter((e) => e.startTime.startsWith(todayString))
@@ -65,7 +69,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
                 Daily Briefing
               </h3>
               <p className="text-[11px] font-bold text-clay-muted tracking-widest uppercase">
-                {todayDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+                {displayDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
               </p>
             </div>
           </div>

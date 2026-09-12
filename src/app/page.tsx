@@ -560,6 +560,7 @@ export default function CalendarHome() {
 
       {/* New Event Modal */}
             <DailyBriefModal
+        dateKey={selectedDateKey}
         isOpen={briefModalOpen}
         onClose={() => setBriefModalOpen(false)}
         events={events}
