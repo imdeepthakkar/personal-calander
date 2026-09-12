@@ -46,7 +46,7 @@ export const NewTaskModal: React.FC<NewTaskModalProps> = ({
     <div className="fixed inset-0 z-50 bg-clay-foreground/10 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-white/70 backdrop-blur-xl rounded-[48px] shadow-clayCard max-w-md w-full overflow-hidden border border-white/40 animate-in fade-in zoom-in-95 duration-300 scale-95">
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-6 border-b border-white/40 bg-white/40">
+        <div className="flex items-center justify-between px-5 py-4 md:px-8 md:py-6 border-b border-white/40 bg-white/40">
           <h3 
             className="text-xl font-black text-clay-foreground"
             style={{ fontFamily: 'var(--font-nunito)' }}

@@ -59,7 +59,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-clay-foreground/10 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white/70 backdrop-blur-xl rounded-[36px] shadow-clayCard max-w-md scale-90 w-full overflow-hidden border border-white/40 animate-in fade-in zoom-in-95 duration-300">
+      <div className="bg-white/70 backdrop-blur-xl rounded-[36px] shadow-clayCard max-w-lg w-full scale-100 sm:scale-95 flex flex-col max-h-[85vh] overflow-hidden border border-white/40 animate-in fade-in zoom-in-95 duration-300">
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/40 bg-white/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-[#EFEBF5] shadow-clayPressed text-clay-accent">
@@ -80,7 +80,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSave} className="p-6 flex flex-col gap-4 text-xs text-sm bg-white/40">
+        <form onSubmit={handleSave} className="p-4 sm:p-6 flex flex-col gap-4 text-xs text-sm bg-white/40 overflow-y-auto no-scrollbar">
           <div>
             <label className="block text-xs font-black text-clay-muted uppercase tracking-wider mb-2 flex items-center gap-2">
               <Type className="w-4 h-4" /> Dashboard Board Title
@@ -94,11 +94,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             />
           </div>
 
-          <div className="p-5 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+          <div className="p-4 sm:p-5 bg-white/50 rounded-[20px] sm:rounded-[24px] border border-white/50 shadow-sm">
             <label className="block text-xs font-black text-clay-success uppercase tracking-wider mb-3 flex items-center gap-2">
               <Globe className="w-4 h-4" /> Primary Timezone (Left Pill & Green Badge)
             </label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="flex flex-col sm:grid sm:grid-cols-3 gap-3">
               <select
                 value={primaryTimezone}
                 onChange={(e) => handlePrimaryChange(e.target.value)}
@@ -120,11 +120,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          <div className="p-5 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+          <div className="p-4 sm:p-5 bg-white/50 rounded-[20px] sm:rounded-[24px] border border-white/50 shadow-sm">
             <label className="block text-xs font-black text-clay-sky uppercase tracking-wider mb-3 flex items-center gap-2">
               <Globe className="w-4 h-4" /> Secondary Timezone (Right Pill & Blue Badge)
             </label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="flex flex-col sm:grid sm:grid-cols-3 gap-3">
               <select
                 value={secondaryTimezone}
                 onChange={(e) => handleSecondaryChange(e.target.value)}
@@ -146,7 +146,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          <div className="p-5 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+          <div className="p-4 sm:p-5 bg-white/50 rounded-[20px] sm:rounded-[24px] border border-white/50 shadow-sm">
             <label className="block text-xs font-black text-clay-muted uppercase tracking-wider mb-3 flex items-center gap-2">
               <Clock className="w-4 h-4" /> Core Working Hours Window
             </label>
@@ -176,7 +176,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          <div className="p-5 bg-white/50 rounded-[24px] border border-white/50 shadow-sm">
+          <div className="p-4 sm:p-5 bg-white/50 rounded-[20px] sm:rounded-[24px] border border-white/50 shadow-sm">
             <label className="block text-xs font-black text-clay-muted uppercase tracking-wider mb-3 flex items-center gap-2">
               <Settings className="w-4 h-4" /> Gemini AI Key (Optional)
             </label>

@@ -87,9 +87,9 @@ export const SyncModal: React.FC<SyncModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-clay-foreground/10 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white/70 backdrop-blur-xl rounded-[48px] shadow-clayCard max-w-xl w-full border border-white/40 flex flex-col max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
+      <div className="bg-white/70 backdrop-blur-xl rounded-[32px] md:rounded-[48px] shadow-clayCard max-w-xl w-full border border-white/40 flex flex-col max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-6 border-b border-white/40">
+        <div className="flex items-center justify-between px-5 py-4 md:px-8 md:py-6 border-b border-white/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-[#EFEBF5] shadow-clayPressed text-clay-accent">
               <RefreshCw className="w-5 h-5" />
@@ -110,7 +110,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-5 overflow-y-auto flex flex-col gap-5 text-xs">
+        <div className="p-4 sm:p-6 overflow-y-auto flex flex-col gap-4 sm:gap-5 text-xs no-scrollbar">
           {/* Section 1: iCal / WebCal Subscriptions */}
           <div className="bg-white/50 rounded-[24px] shadow-sm p-4 rounded-xl border border-white/50">
             <div className="flex items-center justify-between mb-2">
