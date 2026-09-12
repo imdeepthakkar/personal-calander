@@ -18,7 +18,7 @@ export const NewTaskModal: React.FC<NewTaskModalProps> = ({
   onAddTask,
 }) => {
   const [title, setTitle] = useState('');
-  const [dueDate, setDueDate] = useState(() => new Date().toISOString().split('T')[0]);
+  const [dueDate, setDueDate] = useState('');
   const [assignee, setAssignee] = useState('');
   const [priority, setPriority] = useState<'low' | 'medium' | 'high' | 'urgent'>('medium');
 
@@ -30,7 +30,7 @@ export const NewTaskModal: React.FC<NewTaskModalProps> = ({
 
     onAddTask({
       title: title.trim(),
-      dueDate,
+      dueDate: dueDate || 'Anytime',
       completed: false,
       priority,
       source: 'local',
@@ -85,7 +85,6 @@ export const NewTaskModal: React.FC<NewTaskModalProps> = ({
               </label>
               <input
                 type="date"
-                required
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
                 className="w-full px-5 py-4 rounded-2xl bg-[#EFEBF5] border-none focus:ring-4 focus:ring-clay-accent/20 focus:bg-white text-clay-foreground font-black text-sm shadow-clayPressed transition-all"
@@ -149,3 +148,4 @@ export const NewTaskModal: React.FC<NewTaskModalProps> = ({
     </div>
   );
 };
+
