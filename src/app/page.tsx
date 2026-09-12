@@ -553,15 +553,7 @@ export default function CalendarHome() {
       />
 
 
-      <BottomAlertBar
-        events={events}
-        todos={todos}
-        settings={settings}
-        onSelectEventDate={(dateKey) => {
-          setSelectedDateKey(dateKey);
-          setDrawerOpen(true);
-        }}
-      />
+
 
       {/* New Event Modal */}
       <NewEventModal
