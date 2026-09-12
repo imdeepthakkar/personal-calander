@@ -65,7 +65,7 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
 
         const payload = { contents: [{ parts: [{ text: prompt }] }] };
         const headers = { 'Content-Type': 'application/json' };
-        const models = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-8b'];
+        const models = ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.0-flash'];
 
         let data: any = null;
         let lastError = '';
