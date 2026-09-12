@@ -79,7 +79,8 @@ export const DailyBriefModal: React.FC<DailyBriefModalProps> = ({
             break;
           }
           const errData = await res.json().catch(() => ({}));
-          lastError = (errData as any).error?.message || `Model ${model} failed (${res.status})`;
+          const msg = (errData as any).error?.message || `Model ${model} failed (${res.status})`;
+          lastError += `[${model}: ${msg}] `;
         }
 
         if (!data) throw new Error(lastError || 'All Gemini models failed.');
