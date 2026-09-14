@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} ${dmSans.variable}`}>
       <head>
-        <link rel="manifest" href="/personal-calendar/manifest.json" />
+        <link rel="manifest" href="manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

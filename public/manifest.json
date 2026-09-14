@@ -2,15 +2,13 @@
   "name": "Personal Calendar",
   "short_name": "Personal Cal",
   "description": "Multi-Timezone Workload Calendar & To-Do PWA",
-  "start_url": "/personal-calendar/?mode=standalone",
-  "scope": "/personal-calendar",
   "display": "standalone",
   "background_color": "#f5f5ee",
   "theme_color": "#7C3AED",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/personal-calendar/icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }
