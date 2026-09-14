@@ -1,8 +1,8 @@
-const CACHE_NAME = 'personal-calendar-v1';
+const CACHE_NAME = 'personal-calendar-v2';
 const STATIC_ASSETS = [
-  '/',
-  '/manifest.json',
-  '/favicon.ico'
+  '/personal-calendar/',
+  '/personal-calendar/manifest.json',
+  '/personal-calendar/icon.svg'
 ];
 
 self.addEventListener('install', (event) => {
@@ -55,7 +55,7 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       }).catch(() => {
         // Fallback to cache root if offline
-        return caches.match('/');
+        return caches.match('/personal-calendar/');
       });
     })
   );
